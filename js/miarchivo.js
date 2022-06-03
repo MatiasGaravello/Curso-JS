@@ -1,4 +1,4 @@
-let cantidadProductos = 0;
+
 
 class Producto {
     constructor(nombre, precio) {
@@ -28,16 +28,40 @@ function getListaProductos() {
     return [p1, p2, p3, p4, p5, p6, p7, p8, p9];
 }
 
-function muestraProductos() {
-    let listaProductos = getListaProductos();
+function muestraProductos(listaProductos) {
+    // let listaProductos = getListaProductos();
 
     let mensaje = "Lista de productos:\n";
-    
+
     for (let producto of listaProductos) {
         mensaje += producto.id + " - " + producto.nombre + "  $" + producto.precio + "\n";
     }
 
-    prompt(mensaje);
+    return prompt(mensaje + "\nPRESIONE CANCELAR PARA FINALIZAR LA CARGA DE PRODUCTOS\n\nIngrese el número del producto que desea agregar:");
 }
 
-muestraProductos();
+function validaCodigoIngresado(codigo) {
+    return (typeof codigo == 'number' && codigo >= 1 && codigo <= 9);
+}
+
+function agregaProductoEnCarrito() {
+
+}
+
+
+let listaProductos = getListaProductos();
+let cantidadProductos = 0;
+
+while (true) {
+    let codigoIngresado = muestraProductos(listaProductos);
+
+    if (validaCodigoIngresado(parseInt(codigoIngresado))) {
+        alert("Codigo correcto");
+    } else if (codigoIngresado === null) {
+        alert("Presionó cancelar");
+    } else {
+        alert("Ingrese un código válido");
+    }
+}
+
+
