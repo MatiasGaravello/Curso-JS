@@ -1,0 +1,47 @@
+#main__Tienda {
+    .navbar {
+        #browser-productos {
+            max-width: 500px;
+        }
+
+        button {
+            padding: 0.6rem;
+        }
+    }
+
+    #contenedor-productos {
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media screen and (min-width: 576px) {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            padding: 1rem;
+            border: 0;
+            border-top: 1px solid map-get($colores, gris);
+            border-radius: 0;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 100%;
+
+            @media screen and (min-width: 576px) {
+                border: 0;
+            }
+
+            .row {
+                height: 100%;
+
+                img {
+                    background-color: map-get($colores, gris);
+                }
+            }
+
+
+        }
+    }
+}

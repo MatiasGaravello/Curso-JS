@@ -1,0 +1,10 @@
+#contenedor-login {
+    max-width: 349px;
+
+    form {
+        @media screen and (min-width:768px) {
+            box-shadow: 0 .5rem 1rem rgba(black, .15);
+        }
+    }
+
+}

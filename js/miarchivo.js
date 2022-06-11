@@ -3,6 +3,10 @@
 let cantidadProductos = 0;
 let productosEnCarrito;
 
+const listaProductos = [];
+const listaCategorias = [];
+const listaProductoCategoria = [];
+
 //#endregion
 
 //#region  CLASES
@@ -46,47 +50,156 @@ class Compra {
     }
 }
 
+class Categoria {
+    constructor(id, nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+}
+
+class ProductoCategoria {
+    constructor(listaProductos, categoria) {
+        this.listaProductos = listaProductos;
+        this.categoria = categoria;
+    }
+}
+
 //#endregion
 
 
 //#region FUNCIONES
 
+
+//#region FUNCIONES INICIALIZACION
 function setIdProductos(listaProductos) {
     for (let i = 0; i < 9; i++) {
         listaProductos[i].id = parseInt(i);
     }
 }
 
-function getListaProductos() {
-    const p1 = new Producto("Mini-pocket", 2000, false);
-    const p2 = new Producto("Cartera Total Black", 4200, true);
-    const p3 = new Producto("Bandolera negra con cadena", 3000, true);
-    const p4 = new Producto("Bolso Blanco", 5000, true);
-    const p5 = new Producto("Mochila beige", 4500, true);
-    const p6 = new Producto("Mochila Croco Negro", 4700, true);
-    const p7 = new Producto("Riñonera Negra", 3000, false);
-    const p8 = new Producto("Portanotebook con manija", 3400, true);
-    const p9 = new Producto("Mochila Silver Metalizado", 4500, true);
+function generaListaProductos() {
 
-    return [p1, p2, p3, p4, p5, p6, p7, p8, p9];
+    listaProductos.push(new Producto("Mini-pocket", 2000, false));
+
+    listaProductos.push(new Producto("Cartera Total Black", 4200, true));
+
+    listaProductos.push(new Producto("Bandolera negra con cadena", 3000, true));
+
+    listaProductos.push(new Producto("Bolso Blanco", 5000, true));
+
+    listaProductos.push(new Producto("Bolso Nude", 5200, true));
+
+    listaProductos.push(new Producto("Mochila beige", 4500, true));
+
+    listaProductos.push(new Producto("Mochila Croco Negro", 4700, true));
+
+    listaProductos.push(new Producto("Riñonera Negra", 3000, false));
+
+    listaProductos.push(new Producto("Portanotebook con manija", 3400, true));
+
+    listaProductos.push(new Producto("Portanotebook convencional", 3000, true));
+
+    listaProductos.push(new Producto("Mochila Silver Metalizado", 4500, true));
+
+    listaProductos.push(new Producto("Cartuchera con glitter", 2600, false));
 }
 
+function generaListaCategorias() {
+
+    listaCategorias.push(new Categoria(100, "Carteras"));
+
+    listaCategorias.push(new Categoria(101, "Bolsos y Maletines"));
+
+    listaCategorias.push(new Categoria(102, "Mochilas"));
+
+    listaCategorias.push(new Categoria(103, "Riñoneras"));
+
+    listaCategorias.push(new Categoria(104, "Portanotebooks"));
+
+    listaCategorias.push(new Categoria(105, "Bandoleras"));
+
+    listaCategorias.push(new Categoria(106, "Cartucheras"));
+
+    listaCategorias.push(new Categoria(107, "Billeteras"));
+
+    listaCategorias.push(new Categoria(108, "Promociones"));
+
+    listaCategorias.push(new Categoria(109, "Todas"));
+
+}
+
+function asignaCategoriaAProductos() {
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos, listaCategorias.find((x) => x.nombre === "Todas")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Cartera")), listaCategorias.find((x) => x.nombre === "Carteras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Bolso")), listaCategorias.find((x) => x.nombre === "Bolsos y Maletines")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Mochila")), listaCategorias.find((x) => x.nombre === "Mochilas")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Riñonera")), listaCategorias.find((x) => x.nombre === "Riñoneras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Portanotebook")), listaCategorias.find((x) => x.nombre === "Portanotebooks")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Bandolera")), listaCategorias.find((x) => x.nombre === "Bandoleras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Cartuchera")), listaCategorias.find((x) => x.nombre === "Cartucheras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("pocket")), listaCategorias.find((x) => x.nombre === "Billeteras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.precio <= 4000), listaCategorias.find((x) => x.nombre === "Promociones")));
+}
+
+//#endregion
+
 function muestraProductos(listaProductos) {
-    let mensaje = "Lista de productos:\n";
+
+    let mensaje = "";
 
     for (let producto of listaProductos) {
         mensaje += producto.id + " - " + producto.nombre + "  $" + producto.precio + "\n";
     }
 
-    return prompt(mensaje + "\nPRESIONE CANCELAR PARA FINALIZAR LA CARGA DE PRODUCTOS\n\nIngrese el número del producto que desea agregar:");
+    return mensaje;
+}
+
+
+
+//#region INGRESA PRODUCTOS AL CARRITO
+
+function ingresaProductosAlCarrito() {
+    while (true) {
+        let codigoIngresado = prompt("FUNCION SELECCIONADA:  1 - AGREGA PRODUCTOS AL CARRITO\n\nPRODUCTOS:\n" + muestraProductos(listaProductos) + "\nIngrese el ID del producto que desea comprar. En caso de no querer visualizar el carrito ingrese la palabra FIN:");
+
+        if (validaCodigoIngresado(parseInt(codigoIngresado))) {
+            const producto = listaProductos.find(x => x.id == parseInt(codigoIngresado));
+
+            const cantidad = parseInt(solicitaCantidad(producto));
+
+            let talle;
+
+            if (producto.hasTalle) {
+                talle = parseInt(solicitaTalle(producto, cantidad));
+            } else {
+                talle = 0;
+            }
+
+            agregaProductoEnCarrito(producto, compra, talle, cantidad);
+        }
+        else if (codigoIngresado === "FIN") {
+            muestraCarrito();
+
+            break;
+        } else {
+            alert("Opción no válida");
+        }
+    }
+
 }
 
 function validaCodigoIngresado(codigo) {
     return (typeof codigo == 'number' && codigo >= 1 && codigo <= 9);
-}
-
-function validaTalle(talle) {
-
 }
 
 function agregaProductoEnCarrito(producto, compra, talle, cantidad) {
@@ -146,38 +259,84 @@ function muestraCarrito() {
 
 //#endregion
 
+
+//#region FILTRA PRODUCTOS
+
+function filtraBusquedaProductos() {
+    let opcionCategoria = prompt("FUNCION SELECCIONADA:  2 - FILTRO DE BUSQUEDA\n\nCATEGORIAS DISPONIBLES: " + muestraListaCategorias() + "\nIngrese el ID o DESCRIPCION DE LA CATEGORIA DESEADA");
+
+    let objetoCategoria = listaCategorias.find((x) => x.nombre.toUpperCase().includes(opcionCategoria.toUpperCase()) || x.id == parseInt(opcionCategoria));
+
+    let productoCategoria;
+
+    if (objetoCategoria != null) {
+        productoCategoria = listaProductoCategoria.find((x) => x.categoria.id == objetoCategoria.id);
+
+        alert("CATEGORIA : " + productoCategoria.categoria.nombre + "\n\n" + muestraProductos(productoCategoria.listaProductos));
+    } else {
+        alert("Opción no válida");
+    }
+}
+
+function muestraListaCategorias() {
+    let lista = "\n ID    DESCRIPCION\n";
+
+    for (const categoria of listaCategorias) {
+        lista += categoria.id + " - " + categoria.nombre + "\n";
+    }
+
+    return lista;
+}
+
+//#endregion
+
+
+//#endregion
+
 //#region MAIN
 
 let listDetalleCompra;
-const compra = new Compra(listDetalleCompra);
-let listaProductos = getListaProductos();
 
+const compra = new Compra(listDetalleCompra);
+
+generaListaProductos();
+
+generaListaCategorias();
+
+asignaCategoriaAProductos();
+
+alert("¡BIENVENIDO A NUESTRO PROGRAMA!\n Actualemnte disponemos de dos funciones que simulan las acciones disponibles en un ecommerce. Pronto aplicaremos dichas funciones directamente al html sin necesidad de usar el prompt.");
 
 while (true) {
-    let codigoIngresado = parseInt(muestraProductos(listaProductos));
 
-    if (validaCodigoIngresado(codigoIngresado)) {
-        const producto = listaProductos.find(x => x.id == codigoIngresado);
+    let opcionFuncion = parseInt(prompt("FUNCIONES DISPONIBLES:\n1 - AGREGA PRODUCTOS AL CARRITO\n2 - FILTRO DE BUSQUEDA\n3 - SALIR DEL PROGRAMA\n\nIngrese el número de opción que desea realizar:"));
 
-        const cantidad = parseInt(solicitaCantidad(producto));
+    switch (opcionFuncion) {
+        case 1:
 
-        let talle;
+            ingresaProductosAlCarrito();
 
-        if (producto.hasTalle) {
-            talle = parseInt(solicitaTalle(producto, cantidad));
-        } else {
-            talle = 0;
-        }
+            break;
 
-        agregaProductoEnCarrito(producto, compra, talle, cantidad);
+        case 2:
+
+            filtraBusquedaProductos();
+
+            break;
+
+        case 3:
+
+            alert("\n¡Gracias por utilizar nuestra app!");
+
+            break;
+
+        default:
+
+            alert("Ingrese una opción válida");
     }
-    else {
-        muestraCarrito();
 
-        alert("\n¡Gracias por utilizar nuestra app!")
-
+    if (opcionFuncion == 3)
         break;
-    }
 }
 
 //#endregion

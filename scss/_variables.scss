@@ -1,0 +1,44 @@
+$font-default: 'Roboto',
+    sans-serif;
+$borde: solid 1px #dee2e6;
+$font-color: #292929;
+
+
+
+$colores: (
+    gris:#D0D5D9,
+    gris-claro:#f5f3f3,
+    marron-oscuro:#594C3C,
+    marron-claro:#A6867B,
+    nude:#D9BEB4,
+    oxido:#8C5245,
+    dark:#1F1F1F
+);
+
+
+/***************** FOOTER **********************/
+
+$estilo-info-contacto: (
+    display:flex,
+    justify-content:center,
+    font-size:1.2rem
+);
+
+/***************** FIN FOOTER **********************/
+
+/***************** index.html **********************/
+
+$imagenes-carousel-publicidad: (
+    imagen-1:"../assets/imagen-principal-1.jpg",
+    imagen-2:"../assets/imagen-principal-2.jpg",
+    imagen-3:"../assets/imagen-principal-3.jpg"
+);
+
+$imagenes-novedades: (
+    imagen-1:"../assets/producto-A.png",
+    imagen-2:"../assets/bandolera-negra.png",
+    imagen-3:"../assets/riñonera_negra.png",
+    imagen-4:"../assets/mochi-small-negra.png"
+);
+
+/***************** FIN index.html **********************/

@@ -1,0 +1,24 @@
+// @media screen and (min-height:807px){
+//     footer{
+//         position: absolute;
+//         bottom: 0;
+//         margin: auto;
+//     }
+// }
+
+#main-contacto {
+    max-width: 545px;
+
+    @media screen and (min-width:768px) {
+        box-shadow: 0 .5rem 1rem rgba(black, .15);
+    }
+
+    #contenedor-rdb-sexo {
+        max-width: 278px;
+    }
+
+    textarea {
+        resize: none;
+        height: 100px;
+    }
+}

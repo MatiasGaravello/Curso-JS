@@ -1,0 +1,51 @@
+$color-header: #d9beb4;
+
+header {
+    grid-area: header;
+    background-color: $color-header;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    z-index: 999;
+    animation: fadeIn;
+    animation-duration: 2s;
+    color: #292929 !important;
+
+    nav {
+        letter-spacing: 1px;
+    }
+
+    .header__logo {
+        width: 100px;
+
+        @media screen and (min-width: 768px) {
+            width: 140px;
+        }
+
+        @media screen and (min-width: 992px) {
+            width: 170px;
+        }
+    }
+
+    .header__menuDerecho {
+
+        button {
+            background-color: transparent;
+            border-radius: 7px;
+            border: none;
+            font-size: 1rem;
+            padding: 10px;
+            color: #292929;
+
+
+            span {
+                display: none;
+
+                @media screen and (min-width: 992px) {
+                    display: inline;
+                }
+            }
+        }
+    }
+
+
+}

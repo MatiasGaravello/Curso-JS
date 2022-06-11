@@ -1,0 +1,76 @@
+@import 'variables';
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: $font-default;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: $font-color;
+}
+
+img {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+
+li {
+    list-style-type: none;
+}
+
+main {
+    grid-area: main;
+}
+
+svg {
+    fill: currentColor;
+}
+
+.imagen-redondeada {
+    border-radius: 2px;
+}
+
+.imagen-redondeada-con-borde {
+    @extend .imagen-redondeada;
+    border: $borde;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.letter-spacing-1 {
+    letter-spacing: 2px;
+}
+
+.btn-primary {
+    background-color: map-get($colores, oxido);
+    border-color: map-get($colores, oxido);
+}
+
+.btn-secondary {
+    background-color: map-get($colores,dark);
+    border-color:map-get($colores,dark);
+}
+
+/******************* MIXINS ***********************/
+
+//función que permite asignar un map de imágenes a aquellas clases que cuyo nombre sea class-name
+@mixin asigna-Imagenes($map-imagenes) {
+
+    @each $class-name,
+    $path-imagen in $map-imagenes {
+        .#{$class-name} {
+            content: url($path-imagen);
+        }
+    }
+}

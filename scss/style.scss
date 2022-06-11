@@ -1,0 +1,77 @@
+@import 'general';
+@import 'header';
+@import 'index';
+@import 'variables';
+@import 'producto';
+@import 'footer';
+@import 'contacto';
+@import 'login';
+@import 'carrito';
+@import 'tienda';
+
+/***************************** TRANSICIONES Y ANIMACIONES ********************************/
+
+.transition-regular {
+    transition: all 0.3s;
+}
+
+/* efecto 3d */
+.threed:hover {
+    box-shadow:
+        1px 1px #e0e2e4,
+        2px 2px #e0e2e4,
+        3px 3px #e0e2e4;
+    -webkit-transform: translateX(-3px);
+    transform: translateX(-3px);
+}
+
+/* agrandar */
+.grow:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.fade-in:hover {
+    filter:opacity(.5);
+}
+
+.border-fade:hover {
+    border: 1px solid #0d6efd !important;
+}
+
+.fadeInLeft {
+    animation: fadeInLeft;
+    animation-duration: .5s;
+}
+
+/* efecto zoom*/
+.img-hover-zoom {
+    overflow: hidden;
+    /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+    transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+    transform: scale(1.5);
+}
+
+/***************************** FIN TRANSICIONES Y ANIMACIONES ********************************/
+
+
+/***************************** FIN MIXINS *******************************/
+#main__Tienda {
+    #contenedor-productos {
+        .col {
+            img {
+                height: 100%;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,275 @@
+@charset "UTF-8";
+/***************** FOOTER **********************/
+/***************** FIN FOOTER **********************/
+/***************** index.html **********************/
+/***************** FIN index.html **********************/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box; }
+
+html {
+  font-size: 12px; }
+
+a {
+  text-decoration: none;
+  color: #292929; }
+
+img {
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto; }
+
+li {
+  list-style-type: none; }
+
+main {
+  grid-area: main; }
+
+svg {
+  fill: currentColor; }
+
+.imagen-redondeada, .imagen-redondeada-con-borde {
+  border-radius: 2px; }
+
+.imagen-redondeada-con-borde {
+  border: solid 1px #dee2e6; }
+
+.cursor-pointer {
+  cursor: pointer; }
+
+.letter-spacing-1 {
+  letter-spacing: 2px; }
+
+.btn-primary {
+  background-color: #8C5245;
+  border-color: #8C5245; }
+
+.btn-secondary {
+  background-color: #1F1F1F;
+  border-color: #1F1F1F; }
+
+/******************* MIXINS ***********************/
+header {
+  grid-area: header;
+  background-color: #d9beb4;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  z-index: 999;
+  animation: fadeIn;
+  animation-duration: 2s;
+  color: #292929 !important; }
+  header nav {
+    letter-spacing: 1px; }
+  header .header__logo {
+    width: 100px; }
+    @media screen and (min-width: 768px) {
+      header .header__logo {
+        width: 140px; } }
+    @media screen and (min-width: 992px) {
+      header .header__logo {
+        width: 170px; } }
+  header .header__menuDerecho button {
+    background-color: transparent;
+    border-radius: 7px;
+    border: none;
+    font-size: 1rem;
+    padding: 10px;
+    color: #292929; }
+    header .header__menuDerecho button span {
+      display: none; }
+      @media screen and (min-width: 992px) {
+        header .header__menuDerecho button span {
+          display: inline; } }
+
+#grilla__index {
+  display: grid;
+  grid-template-areas: "header" "publicidad" "novedades" "productos" "atributos" "footer";
+  grid-template-rows: minmax(60px, max-content) 1fr auto auto auto auto;
+  grid-template-columns: 100%; }
+  #grilla__index #carouselPublicidad {
+    grid-area: publicidad; }
+    #grilla__index #carouselPublicidad .imagen-1 {
+      content: url("../assets/imagen-principal-1.jpg"); }
+    #grilla__index #carouselPublicidad .imagen-2 {
+      content: url("../assets/imagen-principal-2.jpg"); }
+    #grilla__index #carouselPublicidad .imagen-3 {
+      content: url("../assets/imagen-principal-3.jpg"); }
+  #grilla__index #novedades {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    grid-area: novedades;
+    max-width: 1140px; }
+    #grilla__index #novedades .row .card {
+      background-color: #D0D5D9; }
+      #grilla__index #novedades .row .card .imagen-1 {
+        content: url("../assets/producto-A.png"); }
+      #grilla__index #novedades .row .card .imagen-2 {
+        content: url("../assets/bandolera-negra.png"); }
+      #grilla__index #novedades .row .card .imagen-3 {
+        content: url("../assets/riñonera_negra.png"); }
+      #grilla__index #novedades .row .card .imagen-4 {
+        content: url("../assets/mochi-small-negra.png"); }
+  #grilla__index #productos {
+    grid-area: productos; }
+    #grilla__index #productos .row {
+      width: 85%; }
+      #grilla__index #productos .row .card {
+        letter-spacing: 4px;
+        max-width: 500px; }
+        #grilla__index #productos .row .card img {
+          filter: brightness(50%); }
+  #grilla__index #atributos {
+    grid-area: atributos;
+    margin-top: 40px;
+    margin-bottom: 60px; }
+    @media screen and (min-width: 992px) {
+      #grilla__index #atributos {
+        max-width: 900px;
+        margin-top: 80px;
+        margin-bottom: 70px; } }
+    #grilla__index #atributos .card {
+      font-size: 0.8rem; }
+      #grilla__index #atributos .card img {
+        width: 50px; }
+
+/***************** FOOTER **********************/
+/***************** FIN FOOTER **********************/
+/***************** index.html **********************/
+/***************** FIN index.html **********************/
+#contenedor-producto {
+  max-width: 966px; }
+  @media screen and (min-width: 768px) {
+    #contenedor-producto {
+      margin: 5rem auto 0 auto; } }
+  #contenedor-producto #tarjeta-info-producto {
+    max-width: 450px; }
+    @media screen and (min-width: 768px) {
+      #contenedor-producto #tarjeta-info-producto {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); } }
+    #contenedor-producto #tarjeta-info-producto .card-body {
+      background-color: #f5f3f3; }
+
+footer {
+  background-color: #1F1F1F;
+  color: white;
+  grid-area: footer;
+  margin-top: auto; }
+  footer .col {
+    font-size: 1.2rem; }
+    footer .col a {
+      display: flex;
+      justify-content: center;
+      color: #cdcdcd; }
+  footer img {
+    max-width: 283px !important; }
+
+#main-contacto {
+  max-width: 545px; }
+  @media screen and (min-width: 768px) {
+    #main-contacto {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); } }
+  #main-contacto #contenedor-rdb-sexo {
+    max-width: 278px; }
+  #main-contacto textarea {
+    resize: none;
+    height: 100px; }
+
+#contenedor-login {
+  max-width: 349px; }
+  @media screen and (min-width: 768px) {
+    #contenedor-login form {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); } }
+
+#main-carrito #contenedor-mobile {
+  max-width: 484px; }
+  @media screen and (min-width: 576px) {
+    #main-carrito #contenedor-mobile {
+      display: none; } }
+
+#main-carrito #contenedor-desktop {
+  display: none;
+  max-width: 706px; }
+  @media screen and (min-width: 576px) {
+    #main-carrito #contenedor-desktop {
+      display: block; } }
+  #main-carrito #contenedor-desktop table img {
+    width: 80px;
+    height: 90px; }
+
+#main__Tienda .navbar #browser-productos {
+  max-width: 500px; }
+
+#main__Tienda .navbar button {
+  padding: 0.6rem; }
+
+#main__Tienda #contenedor-productos {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto; }
+  @media screen and (min-width: 576px) {
+    #main__Tienda #contenedor-productos {
+      margin-top: 40px;
+      margin-bottom: 40px; } }
+  #main__Tienda #contenedor-productos .card {
+    padding: 1rem;
+    border: 0;
+    border-top: 1px solid #D0D5D9;
+    border-radius: 0;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%; }
+    @media screen and (min-width: 576px) {
+      #main__Tienda #contenedor-productos .card {
+        border: 0; } }
+    #main__Tienda #contenedor-productos .card .row {
+      height: 100%; }
+      #main__Tienda #contenedor-productos .card .row img {
+        background-color: #D0D5D9; }
+
+/***************************** TRANSICIONES Y ANIMACIONES ********************************/
+.transition-regular {
+  transition: all 0.3s; }
+
+/* efecto 3d */
+.threed:hover {
+  box-shadow: 1px 1px #e0e2e4, 2px 2px #e0e2e4, 3px 3px #e0e2e4;
+  -webkit-transform: translateX(-3px);
+  transform: translateX(-3px); }
+
+/* agrandar */
+.grow:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2); }
+
+.fade-in:hover {
+  filter: opacity(0.5); }
+
+.border-fade:hover {
+  border: 1px solid #0d6efd !important; }
+
+.fadeInLeft {
+  animation: fadeInLeft;
+  animation-duration: .5s; }
+
+/* efecto zoom*/
+.img-hover-zoom {
+  overflow: hidden;
+  /* [1.2] Hide the overflowing of child elements */ }
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease; }
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5); }
+
+/***************************** FIN TRANSICIONES Y ANIMACIONES ********************************/
+/***************************** FIN MIXINS *******************************/
+#main__Tienda #contenedor-productos .col img {
+  height: 100%; }
