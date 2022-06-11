@@ -1,6 +1,11 @@
+//#region VARIABLES GLOBALES
+
 let cantidadProductos = 0;
 let productosEnCarrito;
 
+//#endregion
+
+//#region  CLASES
 
 class Producto {
     constructor(nombre, precio, hasTalle) {
@@ -41,8 +46,13 @@ class Compra {
     }
 }
 
+//#endregion
+
+
+//#region FUNCIONES
+
 function setIdProductos(listaProductos) {
-    for (var i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i++) {
         listaProductos[i].id = parseInt(i);
     }
 }
@@ -119,9 +129,9 @@ function muestraCarrito() {
         let mensajeCarrito = "Productos seleccionados:";
 
         for (let detalleCompra of compra.listDetalleCompra) {
-            mensajeCarrito += "\n\n" +detalleCompra.producto.nombre + "\nCantidad: " + detalleCompra.cantidad + " ";
-            
-            if(detalleCompra.producto.hasTalle){
+            mensajeCarrito += "\n\n" + detalleCompra.producto.nombre + "\nCantidad: " + detalleCompra.cantidad + " ";
+
+            if (detalleCompra.producto.hasTalle) {
                 mensajeCarrito += "\nTalle: " + detalleCompra.talle;
             }
 
@@ -133,6 +143,10 @@ function muestraCarrito() {
         alert(mensajeCarrito);
     }
 }
+
+//#endregion
+
+//#region MAIN
 
 let listDetalleCompra;
 const compra = new Compra(listDetalleCompra);
@@ -165,5 +179,7 @@ while (true) {
         break;
     }
 }
+
+//#endregion
 
 
