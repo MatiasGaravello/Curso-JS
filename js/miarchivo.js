@@ -12,11 +12,12 @@ const listaProductoCategoria = [];
 //#region  CLASES
 
 class Producto {
-    constructor(nombre, precio, hasTalle) {
+    constructor(nombre, precio, hasTalle, pathImagen) {
         this.nombre = nombre;
         this.precio = precio;
         this.id = ++cantidadProductos;
         this.hasTalle = hasTalle;
+        this.pathImagen = pathImagen;
     }
 }
 
@@ -79,29 +80,29 @@ function setIdProductos(listaProductos) {
 
 function generaListaProductos() {
 
-    listaProductos.push(new Producto("Mini-pocket", 2000, false));
+    listaProductos.push(new Producto("Mini-pocket", 2000, false, "../assets/minipocket.png"));
 
-    listaProductos.push(new Producto("Cartera Total Black", 4200, true));
+    listaProductos.push(new Producto("Cartera Total Black", 4200, true, "../assets/cartera_total_black.png"));
 
-    listaProductos.push(new Producto("Bandolera negra con cadena", 3000, true));
+    listaProductos.push(new Producto("Bandolera negra con cadena", 3000, true, "../assets/bandolera-negra.png"));
 
-    listaProductos.push(new Producto("Bolso Blanco", 5000, true));
+    listaProductos.push(new Producto("Bolso Blanco", 5000, true,"../assets/bolso-mendiano-blanco.png"));
 
-    listaProductos.push(new Producto("Bolso Nude", 5200, true));
+    // listaProductos.push(new Producto("Bolso Nude", 5200, true,""));
 
-    listaProductos.push(new Producto("Mochila beige", 4500, true));
+    listaProductos.push(new Producto("Mochila beige", 4500, true, "../assets/mochila_beige.png"));
 
-    listaProductos.push(new Producto("Mochila Croco Negro", 4700, true));
+    listaProductos.push(new Producto("Mochila Croco Negro", 4700, true, "../assets/mochila-croco-negro.png"));
 
-    listaProductos.push(new Producto("Riñonera Negra", 3000, false));
+    listaProductos.push(new Producto("Riñonera Negra", 3000, false, "../assets/riñonera_negra.png"));
 
-    listaProductos.push(new Producto("Portanotebook con manija", 3400, true));
+    listaProductos.push(new Producto("Portanotebook con manija", 3400, true, "../assets/portanotebook_con_manija.png"));
 
-    listaProductos.push(new Producto("Portanotebook convencional", 3000, true));
+    // listaProductos.push(new Producto("Portanotebook convencional", 3000, true));
 
-    listaProductos.push(new Producto("Mochila Silver Metalizado", 4500, true));
+    listaProductos.push(new Producto("Mochila Silver Metalizado", 4500, true, "../assets/mochi_metalizada.png"));
 
-    listaProductos.push(new Producto("Cartuchera con glitter", 2600, false));
+    // listaProductos.push(new Producto("Cartuchera con glitter", 2600, false));
 }
 
 function generaListaCategorias() {
@@ -290,6 +291,22 @@ function muestraListaCategorias() {
 
 //#endregion
 
+//#region CREA CONTROLES
+
+function agregaProductosEnTienda() {
+    let divContenedorProductos = document.getElementById("contenedor-productos");
+
+    for (const producto of listaProductos) {
+        const contenedorProducto = document.createElement("div");
+        contenedorProducto.className = "col";
+        contenedorProducto.innerHTML = `<a href="../pages/producto.html" class="text-reset"><div class="card fade-in transition-regular"><div class="row g-0 align-items-strech text-center"><div class="col-5 col-sm-12"><img src=${producto.pathImagen} class="img-fluid rounded-start" alt="minipocket"></div><div class="col-7 col-sm-12"><div class="card-body h-100 d-flex flex-column justify-content-center"><h3 class="card-title fs-5">${producto.nombre}</h3><p class="card-text fs-3 fw-bold">$${producto.precio}</p></div></div></div></div></a>`;
+
+        divContenedorProductos.appendChild(contenedorProducto);
+    }
+}
+
+//#endregion
+
 
 //#endregion
 
@@ -305,39 +322,44 @@ generaListaCategorias();
 
 asignaCategoriaAProductos();
 
-alert("¡BIENVENIDO A NUESTRO PROGRAMA!\n Actualemnte disponemos de dos funciones que simulan las acciones disponibles en un ecommerce. Pronto aplicaremos dichas funciones directamente al html sin necesidad de usar el prompt.");
+agregaProductosEnTienda();
 
-while (true) {
+// alert("¡BIENVENIDO A NUESTRO PROGRAMA!\n Actualemnte disponemos de dos funciones que simulan las acciones disponibles en un ecommerce. Pronto aplicaremos dichas funciones directamente al html sin necesidad de usar el prompt.");
 
-    let opcionFuncion = parseInt(prompt("FUNCIONES DISPONIBLES:\n1 - AGREGA PRODUCTOS AL CARRITO\n2 - FILTRO DE BUSQUEDA\n3 - SALIR DEL PROGRAMA\n\nIngrese el número de opción que desea realizar:"));
+// while (true) {
 
-    switch (opcionFuncion) {
-        case 1:
+//     let opcionFuncion = parseInt(prompt("FUNCIONES DISPONIBLES:\n1 - AGREGA PRODUCTOS AL CARRITO\n2 - FILTRO DE BUSQUEDA\n3 - SALIR DEL PROGRAMA\n\nIngrese el número de opción que desea realizar:"));
 
-            ingresaProductosAlCarrito();
+//     switch (opcionFuncion) {
+//         case 1:
 
-            break;
+//             ingresaProductosAlCarrito();
 
-        case 2:
+//             break;
 
-            filtraBusquedaProductos();
+//         case 2:
 
-            break;
+//             filtraBusquedaProductos();
 
-        case 3:
+//             break;
 
-            alert("\n¡Gracias por utilizar nuestra app!");
+//         case 3:
 
-            break;
+//             alert("\n¡Gracias por utilizar nuestra app!");
 
-        default:
+//             break;
 
-            alert("Ingrese una opción válida");
-    }
+//         default:
 
-    if (opcionFuncion == 3)
-        break;
-}
+//             alert("Ingrese una opción válida");
+//     }
+
+//     if (opcionFuncion == 3)
+//         break;
+// }
+
+
+
 
 //#endregion
 
