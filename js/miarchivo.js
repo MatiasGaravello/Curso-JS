@@ -1,69 +1,8 @@
-//#region VARIABLES GLOBALES
 
-let cantidadProductos = 0;
-let productosEnCarrito;
-
-const listaProductos = [];
-const listaCategorias = [];
-const listaProductoCategoria = [];
-
-//#endregion
 
 //#region  CLASES
 
-class Producto {
-    constructor(nombre, precio, hasTalle, pathImagen) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.id = ++cantidadProductos;
-        this.hasTalle = hasTalle;
-        this.pathImagen = pathImagen;
-    }
-}
 
-class DetalleCompra {
-    constructor(producto, cantidad, talle) {
-        this.producto = producto;
-        this.cantidad = cantidad;
-        this.talle = talle
-    }
-
-    getSubtotal() {
-        return this.producto.precio * this.cantidad;
-    }
-}
-
-class Compra {
-    constructor(listDetalleCompra) {
-        this.listDetalleCompra = listDetalleCompra;
-    }
-
-    getTotal() {
-        let total = 0;
-
-        if (this.listDetalleCompra != null) {
-            for (let detalleCompra of this.listDetalleCompra) {
-                total += detalleCompra.getSubtotal();
-            }
-        }
-
-        return total;
-    }
-}
-
-class Categoria {
-    constructor(id, nombre) {
-        this.id = id;
-        this.nombre = nombre;
-    }
-}
-
-class ProductoCategoria {
-    constructor(listaProductos, categoria) {
-        this.listaProductos = listaProductos;
-        this.categoria = categoria;
-    }
-}
 
 //#endregion
 
@@ -71,194 +10,11 @@ class ProductoCategoria {
 //#region FUNCIONES
 
 
-//#region FUNCIONES INICIALIZACION
-function setIdProductos(listaProductos) {
-    for (let i = 0; i < 9; i++) {
-        listaProductos[i].id = parseInt(i);
-    }
-}
 
-function generaListaProductos() {
 
-    listaProductos.push(new Producto("Mini-pocket", 2000, false, "../assets/minipocket.png"));
 
-    listaProductos.push(new Producto("Cartera Total Black", 4200, true, "../assets/cartera_total_black.png"));
 
-    listaProductos.push(new Producto("Bandolera negra con cadena", 3000, true, "../assets/bandolera-negra.png"));
 
-    listaProductos.push(new Producto("Bolso Blanco", 5000, true,"../assets/bolso-mendiano-blanco.png"));
-
-    // listaProductos.push(new Producto("Bolso Nude", 5200, true,""));
-
-    listaProductos.push(new Producto("Mochila beige", 4500, true, "../assets/mochila_beige.png"));
-
-    listaProductos.push(new Producto("Mochila Croco Negro", 4700, true, "../assets/mochila-croco-negro.png"));
-
-    listaProductos.push(new Producto("Riñonera Negra", 3000, false, "../assets/riñonera_negra.png"));
-
-    listaProductos.push(new Producto("Portanotebook con manija", 3400, true, "../assets/portanotebook_con_manija.png"));
-
-    // listaProductos.push(new Producto("Portanotebook convencional", 3000, true));
-
-    listaProductos.push(new Producto("Mochila Silver Metalizado", 4500, true, "../assets/mochi_metalizada.png"));
-
-    // listaProductos.push(new Producto("Cartuchera con glitter", 2600, false));
-}
-
-function generaListaCategorias() {
-
-    listaCategorias.push(new Categoria(100, "Carteras"));
-
-    listaCategorias.push(new Categoria(101, "Bolsos y Maletines"));
-
-    listaCategorias.push(new Categoria(102, "Mochilas"));
-
-    listaCategorias.push(new Categoria(103, "Riñoneras"));
-
-    listaCategorias.push(new Categoria(104, "Portanotebooks"));
-
-    listaCategorias.push(new Categoria(105, "Bandoleras"));
-
-    listaCategorias.push(new Categoria(106, "Cartucheras"));
-
-    listaCategorias.push(new Categoria(107, "Billeteras"));
-
-    listaCategorias.push(new Categoria(108, "Promociones"));
-
-    listaCategorias.push(new Categoria(109, "Todas"));
-
-}
-
-function asignaCategoriaAProductos() {
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos, listaCategorias.find((x) => x.nombre === "Todas")));
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Cartera")), listaCategorias.find((x) => x.nombre === "Carteras")));
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Bolso")), listaCategorias.find((x) => x.nombre === "Bolsos y Maletines")));
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Mochila")), listaCategorias.find((x) => x.nombre === "Mochilas")));
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Riñonera")), listaCategorias.find((x) => x.nombre === "Riñoneras")));
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Portanotebook")), listaCategorias.find((x) => x.nombre === "Portanotebooks")));
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Bandolera")), listaCategorias.find((x) => x.nombre === "Bandoleras")));
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Cartuchera")), listaCategorias.find((x) => x.nombre === "Cartucheras")));
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("pocket")), listaCategorias.find((x) => x.nombre === "Billeteras")));
-
-    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.precio <= 4000), listaCategorias.find((x) => x.nombre === "Promociones")));
-}
-
-//#endregion
-
-function muestraProductos(listaProductos) {
-
-    let mensaje = "";
-
-    for (let producto of listaProductos) {
-        mensaje += producto.id + " - " + producto.nombre + "  $" + producto.precio + "\n";
-    }
-
-    return mensaje;
-}
-
-
-
-//#region INGRESA PRODUCTOS AL CARRITO
-
-function ingresaProductosAlCarrito() {
-    while (true) {
-        let codigoIngresado = prompt("FUNCION SELECCIONADA:  1 - AGREGA PRODUCTOS AL CARRITO\n\nPRODUCTOS:\n" + muestraProductos(listaProductos) + "\nIngrese el ID del producto que desea comprar. En caso de no querer visualizar el carrito ingrese la palabra FIN:");
-
-        if (validaCodigoIngresado(parseInt(codigoIngresado))) {
-            const producto = listaProductos.find(x => x.id == parseInt(codigoIngresado));
-
-            const cantidad = parseInt(solicitaCantidad(producto));
-
-            let talle;
-
-            if (producto.hasTalle) {
-                talle = parseInt(solicitaTalle(producto, cantidad));
-            } else {
-                talle = 0;
-            }
-
-            agregaProductoEnCarrito(producto, compra, talle, cantidad);
-        }
-        else if (codigoIngresado === "FIN") {
-            muestraCarrito();
-
-            break;
-        } else {
-            alert("Opción no válida");
-        }
-    }
-
-}
-
-function validaCodigoIngresado(codigo) {
-    return (typeof codigo == 'number' && codigo >= 1 && codigo <= 9);
-}
-
-function agregaProductoEnCarrito(producto, compra, talle, cantidad) {
-    let detalleCompraRepetido;
-
-    if (compra.listDetalleCompra != null) {
-        detalleCompraRepetido = compra.listDetalleCompra.find(detalleCompra => detalleCompra.producto.id === producto.id && detalleCompra.talle === talle);
-
-        //verifico si anteriormente se agregó el producto al carrito. En caso de repetirse, actualizo el detalle existente, 
-        if (detalleCompraRepetido == null) {
-            compra.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
-        } else {
-            detalleCompraRepetido.cantidad += cantidad;
-        }
-    }
-    else {
-        compra.listDetalleCompra = [new DetalleCompra(producto, cantidad, talle)];
-    }
-
-
-}
-
-function solicitaCantidad(producto) {
-    const mensajeCantidad = "USTED HA SELECCIONADO:\n" + producto.nombre + "\n$" + producto.precio;
-
-    return prompt(mensajeCantidad + "\n\nIngrese cantidad:");
-}
-
-function solicitaTalle(producto, cantidad) {
-    const mensajeTalle = "USTED HA SELECCIONADO:\n" + producto.nombre + "\n$" + producto.precio + "\nCantidad: " + cantidad;
-
-    return prompt(mensajeTalle + "\n\nSeleccione un talle del 1 al 3:");
-}
-
-function muestraCarrito() {
-
-    if (compra.getTotal() == 0) {
-        alert("Usted no ha agregado ningun producto al carro de compras");
-    } else {
-        let mensajeCarrito = "Productos seleccionados:";
-
-        for (let detalleCompra of compra.listDetalleCompra) {
-            mensajeCarrito += "\n\n" + detalleCompra.producto.nombre + "\nCantidad: " + detalleCompra.cantidad + " ";
-
-            if (detalleCompra.producto.hasTalle) {
-                mensajeCarrito += "\nTalle: " + detalleCompra.talle;
-            }
-
-            mensajeCarrito += "\nPrecio: $" + detalleCompra.producto.precio + "\nSUBTOTAL: $" + detalleCompra.getSubtotal();
-        }
-
-        mensajeCarrito += "\n\nTOTAL: $" + compra.getTotal();
-
-        alert(mensajeCarrito);
-    }
-}
-
-//#endregion
 
 
 //#region FILTRA PRODUCTOS
@@ -293,17 +49,7 @@ function muestraListaCategorias() {
 
 //#region CREA CONTROLES
 
-function agregaProductosEnTienda() {
-    let divContenedorProductos = document.getElementById("contenedor-productos");
 
-    for (const producto of listaProductos) {
-        const contenedorProducto = document.createElement("div");
-        contenedorProducto.className = "col";
-        contenedorProducto.innerHTML = `<a href="../pages/producto.html" class="text-reset"><div class="card fade-in transition-regular"><div class="row g-0 align-items-strech text-center"><div class="col-5 col-sm-12"><img src=${producto.pathImagen} class="img-fluid rounded-start" alt="minipocket"></div><div class="col-7 col-sm-12"><div class="card-body h-100 d-flex flex-column justify-content-center"><h3 class="card-title fs-5">${producto.nombre}</h3><p class="card-text fs-3 fw-bold">$${producto.precio}</p></div></div></div></div></a>`;
-
-        divContenedorProductos.appendChild(contenedorProducto);
-    }
-}
 
 //#endregion
 
@@ -312,17 +58,7 @@ function agregaProductosEnTienda() {
 
 //#region MAIN
 
-let listDetalleCompra;
 
-const compra = new Compra(listDetalleCompra);
-
-generaListaProductos();
-
-generaListaCategorias();
-
-asignaCategoriaAProductos();
-
-agregaProductosEnTienda();
 
 // alert("¡BIENVENIDO A NUESTRO PROGRAMA!\n Actualemnte disponemos de dos funciones que simulan las acciones disponibles en un ecommerce. Pronto aplicaremos dichas funciones directamente al html sin necesidad de usar el prompt.");
 
