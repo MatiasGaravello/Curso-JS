@@ -162,29 +162,6 @@ function muestraCarrito() {
         pEnvioMobile.innerText =`$${costoEnvio}`;
         pTotalMobile.innerText = `$${compra.getTotal() + costoEnvio}`;
     }
-
-
-
-
-    if (compra.getTotal() == 0) {
-        alert("Usted no ha agregado ningun producto al carro de compras");
-    } else {
-        let mensajeCarrito = "Productos seleccionados:";
-
-        for (let detalleCompra of compra.listDetalleCompra) {
-            mensajeCarrito += "\n\n" + detalleCompra.producto.nombre + "\nCantidad: " + detalleCompra.cantidad + " ";
-
-            if (detalleCompra.producto.hasTalle) {
-                mensajeCarrito += "\nTalle: " + detalleCompra.talle;
-            }
-
-            mensajeCarrito += "\nPrecio: $" + detalleCompra.producto.precio + "\nSUBTOTAL: $" + detalleCompra.getSubtotal();
-        }
-
-        mensajeCarrito += "\n\nTOTAL: $" + compra.getTotal();
-
-        alert(mensajeCarrito);
-    }
 }
 
 
