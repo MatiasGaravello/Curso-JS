@@ -11,12 +11,6 @@ const listaProductoCategoria = [];
 
 //#region FUNCIONES INICIALIZACION
 
-// function setIdProductos(listaProductos) {
-//     for (let i = 0; i < 9; i++) {
-//         listaProductos[i].id = parseInt(i);
-//     }
-// }
-
 function generaListaProductos() {
 
     listaProductos.push(new Producto("Mini-pocket", 2000, false, "../assets/minipocket.png"));
@@ -46,25 +40,27 @@ function generaListaProductos() {
 
 function generaListaCategorias() {
 
-    listaCategorias.push(new Categoria(100, "Carteras"));
+    listaCategorias.push(new Categoria(1, "Todas"));
 
-    listaCategorias.push(new Categoria(101, "Bolsos y Maletines"));
+    listaCategorias.push(new Categoria(2, "Carteras"));
 
-    listaCategorias.push(new Categoria(102, "Mochilas"));
+    listaCategorias.push(new Categoria(3, "Bolsos y Maletines"));
 
-    listaCategorias.push(new Categoria(103, "Riñoneras"));
+    listaCategorias.push(new Categoria(4, "Mochilas"));
 
-    listaCategorias.push(new Categoria(104, "Portanotebooks"));
+    listaCategorias.push(new Categoria(5, "Riñoneras"));
 
-    listaCategorias.push(new Categoria(105, "Bandoleras"));
+    listaCategorias.push(new Categoria(6, "Portanotebooks"));
 
-    listaCategorias.push(new Categoria(106, "Cartucheras"));
+    listaCategorias.push(new Categoria(7, "Bandoleras"));
 
-    listaCategorias.push(new Categoria(107, "Billeteras"));
+    listaCategorias.push(new Categoria(8, "Cartucheras"));
 
-    listaCategorias.push(new Categoria(108, "Promociones"));
+    listaCategorias.push(new Categoria(9, "Billeteras"));
 
-    listaCategorias.push(new Categoria(109, "Todas"));
+    listaCategorias.push(new Categoria(10, "Promociones"));
+
+    
 
 }
 
