@@ -1,6 +1,6 @@
-const listaPublicidad = [{ pathImagen: "../assets/imagen-principal-1.jpg", descripcion: "mochila nude y cuero serpiente" },
-{ pathImagen: "../assets/imagen-principal-2.jpg", descripcion: "riñonera negra con tachas" },
-{ pathImagen: "../assets/imagen-principal-3.jpg", descripcion: "mochila roja con charol negro" }];
+// const listaPublicidad = [{ pathImagen: "../assets/imagen-principal-1.jpg", descripcion: "mochila nude y cuero serpiente" },
+// { pathImagen: "../assets/imagen-principal-2.jpg", descripcion: "riñonera negra con tachas" },
+// { pathImagen: "../assets/imagen-principal-3.jpg", descripcion: "mochila roja con charol negro" }];
 
 const listNovedades = [listaProductos[4], listaProductos[2], listaProductos[7], listaProductos[9]];
 
