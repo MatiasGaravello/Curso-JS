@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /***************** FOOTER **********************/
 /***************** FIN FOOTER **********************/
 /***************** index.html **********************/
@@ -104,14 +103,6 @@ header {
     max-width: 1140px; }
     #grilla__index #novedades .row .card {
       background-color: #D0D5D9; }
-      #grilla__index #novedades .row .card .imagen-1 {
-        content: url("../assets/producto-A.png"); }
-      #grilla__index #novedades .row .card .imagen-2 {
-        content: url("../assets/bandolera-negra.png"); }
-      #grilla__index #novedades .row .card .imagen-3 {
-        content: url("../assets/riñonera_negra.png"); }
-      #grilla__index #novedades .row .card .imagen-4 {
-        content: url("../assets/mochi-small-negra.png"); }
   #grilla__index #productos {
     grid-area: productos; }
     #grilla__index #productos .row {

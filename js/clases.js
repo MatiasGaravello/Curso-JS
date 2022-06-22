@@ -51,3 +51,4 @@ class ProductoCategoria {
         this.categoria = categoria;
     }
 }
+

@@ -7,6 +7,7 @@ const listaProductos = [];
 const listaCategorias = [];
 const listaProductoCategoria = [];
 
+
 //#endregion
 
 //#region FUNCIONES INICIALIZACION
@@ -21,7 +22,7 @@ function generaListaProductos() {
 
     listaProductos.push(new Producto("Bolso Blanco", 5000, true, "../assets/bolso-mendiano-blanco.png"));
 
-    // listaProductos.push(new Producto("Bolso Nude", 5200, true,""));
+    listaProductos.push(new Producto("Bolso Nude", 5200, true,"../assets/producto-A.png"));
 
     listaProductos.push(new Producto("Mochila beige", 4500, true, "../assets/mochila_beige.png"));
 
@@ -31,11 +32,9 @@ function generaListaProductos() {
 
     listaProductos.push(new Producto("Portanotebook con manija", 3400, true, "../assets/portanotebook_con_manija.png"));
 
-    // listaProductos.push(new Producto("Portanotebook convencional", 3000, true));
+    listaProductos.push(new Producto("Mochila Negra", 4000, true, "../assets/mochi-small-negra.png"));
 
     listaProductos.push(new Producto("Mochila Silver Metalizado", 4500, true, "../assets/mochi_metalizada.png"));
-
-    // listaProductos.push(new Producto("Cartuchera con glitter", 2600, false));
 }
 
 function generaListaCategorias() {

@@ -24,7 +24,7 @@
 
         .row {
             .card {
-                @include asigna-Imagenes($imagenes-novedades);
+                // @include asigna-Imagenes($imagenes-novedades);
                 background-color: map-get($colores, gris);
             }
         }
