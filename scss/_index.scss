@@ -12,7 +12,7 @@
 
     #carouselPublicidad {
         grid-area: publicidad;
-        @include asigna-Imagenes($imagenes-carousel-publicidad);
+        // @include asigna-Imagenes($imagenes-carousel-publicidad);
     }
 
 

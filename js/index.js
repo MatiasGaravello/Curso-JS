@@ -1,6 +1,6 @@
-// const listaPublicidad = [{ pathImagen: "../assets/imagen-principal-1.jpg", descripcion: "mochila nude y cuero serpiente" },
-// { pathImagen: "../assets/imagen-principal-2.jpg", descripcion: "riñonera negra con tachas" },
-// { pathImagen: "../assets/imagen-principal-3.jpg", descripcion: "mochila roja con charol negro" }];
+const listaPublicidad = [{ pathImagen: "../assets/imagen-principal-1.jpg", descripcion: "mochila nude y cuero serpiente" },
+{ pathImagen: "../assets/imagen-principal-2.jpg", descripcion: "riñonera negra con tachas" },
+{ pathImagen: "../assets/imagen-principal-3.jpg", descripcion: "mochila roja con charol negro" }];
 
 const listNovedades = [listaProductos[4], listaProductos[2], listaProductos[7], listaProductos[9]];
 
@@ -13,6 +13,36 @@ const listNuestrosProductos = [{ pathImagen: "assets/producto-riñonera1.jpg", n
 { pathImagen: "assets/producto-billetera.jpg", nombre: "billeteras" },
 { pathImagen: "assets/producto-cartuchera.jpg", nombre: "cartucheras" },
 { pathImagen: "assets/producto-bandolera.jpg", nombre: "bandoleras" }];
+
+function agregaElementosPublicidad() {
+    agregaIndicadoresCarousel(listaPublicidad.length, document.querySelector("#carouselPublicidad .carousel-indicators"));
+
+    agregaImagenesCarousel(listaPublicidad, document.querySelector("#carouselPublicidad .carousel-inner"));
+}
+
+function agregaIndicadoresCarousel(cantidadBotones, contenedorIndicadores) {
+    for (let i = 0; i < cantidadBotones; i++) {
+        contenedorIndicadores.innerHTML +=
+            `<button type="button" data-bs-target="#carouselPublicidad" data-bs-slide-to="${i}" class="active"
+            aria-current="true" aria-label="Slide ${(i + 1)}"></button>`;
+    }
+}
+
+function agregaImagenesCarousel(imagenConDescripcion, contenedorItems) {
+    imagenConDescripcion.forEach(x => {
+        const carouselItem = document.createElement("div");
+
+        if (imagenConDescripcion[0] != x) {
+            carouselItem.className = "carousel-item";
+        } else {
+            carouselItem.className = "carousel-item active";
+        }
+
+        carouselItem.innerHTML = `<img src=${x.pathImagen} class="d-block w-100" alt=${x.descripcion}>`;
+
+        contenedorItems.appendChild(carouselItem);
+    });
+}
 
 function agregaElementosEnNovedades() {
     const divNovedades = document.querySelector("#novedades .row");
@@ -60,3 +90,5 @@ function agregaElementosEnNuestrosProductos() {
 agregaElementosEnNovedades();
 
 agregaElementosEnNuestrosProductos();
+
+agregaElementosPublicidad();
