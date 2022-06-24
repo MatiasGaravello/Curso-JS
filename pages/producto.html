@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://kit.fontawesome.com/4912031e26.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/estilo-sass.css">
+    <script defer src="../js/clases.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script defer src="../js/producto.js"></script>
     <title>BAGNA - producto</title>
 </head>
 
@@ -98,8 +101,9 @@
             <div class="col-md-7">
                 <div class="row">
                     <div class="col-2">
-                        <div id="selectorImagenDesktop" class="d-none d-md-flex flex-column justify-content-around h-100" id="contenedor-muestra">
-                            <a href="">
+                        <div id="selectorImagenDesktop"
+                            class="d-none d-md-flex flex-column justify-content-around h-100" id="contenedor-muestra">
+                            <!-- <a href="">
                                 <img src="../assets/imagen-producto-1.png" alt="" class="imagen-redondeada-con-borde">
                             </a>
                             <a href="">
@@ -110,16 +114,16 @@
                             </a>
                             <a href="">
                                 <img src="../assets/imagen-producto-4.png" alt="" class="imagen-redondeada-con-borde">
-                            </a>
+                            </a> -->
 
                         </div>
                     </div>
                     <div class="col-10">
-                        <div class="d-none d-md-inline">
-                            <a href="">
+                        <div id="imagenPricipalProducto" class="d-none d-md-inline">
+                            <!-- <a href="">
                                 <img class="imagen-redondeada" src="../assets/imagen-producto-1.png"
                                     alt="Mini bag Riñonera 2 en 1">
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -169,10 +173,9 @@
                     <!-- END CAROUSEL -->
 
                     <div class="card-body p-4" id="detalle">
-                        <h3 class="card-title">Mini Bag Riñonera 2 en 1</h3>
-                        <p class="fs-1">$4000</p>
-                        <p class="fs-5">Si así es, cambiándole la posición de la correa la podes usar como Riñonera o
-                            solo como Bandolera. Vos elegí la opción que más te guste según tu outfit.</p>
+                        <h3 id="nombreProducto" class="card-title"></h3>
+                        <p id="precioProducto" class="fs-1"></p>
+                        <p id="descripcionProducto" class="fs-5"></p>
                         <p class="fw-bold">
                         <div class="d-flex">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="15px">
@@ -183,7 +186,7 @@
                             <p class="m-0 ms-1">Costo de envío: $900</p>
                         </div>
                         </p>
-                        <div class="form-floating">
+                        <div id="seccionTalle" class="form-floating">
                             <select class="form-select" id="floatingTalle" aria-label="Floating label select example">
                                 <option selected>Seleccione un talle</option>
                                 <option value="s">S</option>

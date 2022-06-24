@@ -1,27 +1,56 @@
 function cargaPaginaProducto(producto) {
+    cargaImagenesSelectoras(producto);
 
+    cargaImagenPrincipal(producto);
+
+    cargaDetalleProducto(producto);
 }
 
-function cargaImagenesSelectoras(listaImagenes) {
+function cargaImagenPrincipal(producto) {
+    const divimagenPricipalProducto = document.querySelector("#contenedor-producto #imagenPricipalProducto");
+
+    divimagenPricipalProducto.innerHTML =
+        `<a href="">
+            <img class="imagen-redondeada" src=${producto.listPathImagen[0]} alt="Mini bag Riñonera 2 en 1">
+        </a>`;
+}
+
+function cargaImagenesSelectoras(producto) {
 
     const divSelectorImagenDesktop = document.querySelector("#contenedor-producto #selectorImagenDesktop");
 
-    const divSelectorImagenMobile = document.querySelector("#carousel-producto .carousel-indicators");
+    const divSelectorImagenMobile = document.querySelector("#carousel-producto .carousel-inner");
 
-    listaImagenes.forEach(x => {
+    producto.listPathImagen.forEach(x => {
         divSelectorImagenDesktop.innerHTML +=
             `<a href="">
-                <img src="../assets/imagen-producto-1.png" alt="" class="imagen-redondeada-con-borde">
+                <img src=${x} alt="" class="imagen-redondeada-con-borde">
             </a>`;
 
         divSelectorImagenMobile.innerHTML += `
             <div class="carousel-item active">
-                <img src="../assets/imagen-producto-1.png" class="d-block w-100" alt="...">
+                <img src=${x} class="d-block w-100" alt="...">
             </div>`;
     });
 }
 
-const productoSeleccionado = JSON.stringify(listaProductos[0]);
+function cargaDetalleProducto(producto) {
+    document.querySelector("#detalle #nombreProducto").textContent = producto.nombre;
 
-localStorage.setItem("productoSeleccionado", productoSeleccionado);
+    document.querySelector("#detalle #precioProducto").textContent = "$" + producto.precio;
+
+    document.querySelector("#detalle #descripcionProducto").textContent = producto.descripcion;
+
+    if (!producto.hasTalle) {
+        document.querySelector("#detalle #seccionTalle").setAttribute("display", "none");
+    }
+}
+
+// productoJSON = JSON.stringify(listaProductos[11]);
+
+// localStorage.setItem("productoSeleccionado", productoJSON);
+
+const productoSeleccionado = JSON.parse(localStorage.getItem("productoSeleccionado"));
+
+cargaPaginaProducto(productoSeleccionado);
 

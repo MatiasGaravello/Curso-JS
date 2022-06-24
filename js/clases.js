@@ -1,10 +1,11 @@
 class Producto {
-    constructor(nombre, precio, hasTalle, pathImagen) {
+    constructor(nombre, precio, hasTalle, listaImagenes, descripcion) {
         this.nombre = nombre;
         this.precio = precio;
         this.id = ++cantidadProductos;
         this.hasTalle = hasTalle;
-        this.pathImagen = pathImagen;
+        this.listPathImagen = listaImagenes;
+        this.descripcion = descripcion;
     }
 }
 

@@ -12,7 +12,7 @@ function agregaProductosEnTienda(listaProductosFiltrados) {
                 <div class="card fade-in transition-regular">
                     <div class="row g-0 align-items-strech text-center">
                         <div class="col-5 col-sm-12">
-                            <img src=${producto.pathImagen} class="img-fluid rounded-start" alt=${producto.nombre}>
+                            <img src=${producto.listPathImagen[0]} class="img-fluid rounded-start" alt=${producto.nombre}>
                         </div>
                         <div class="col-7 col-sm-12">
                             <div class="card-body h-100 d-flex flex-column justify-content-center">
@@ -25,6 +25,8 @@ function agregaProductosEnTienda(listaProductosFiltrados) {
             </a>`;
 
         divContenedorProductos.appendChild(contenedorProducto);
+
+        contenedorProducto.onclick = () => { localStorage.setItem("productoSeleccionado", JSON.stringify(producto)) };
     }
 }
 
@@ -57,7 +59,7 @@ function getListProductosPorCategoria() {
 
 function getListProductosFiltrados(productosFiltrados) {
     productosFiltrados = getListProductosPorCategoria().slice();
-    
+
     getListProductosOrdenados(productosFiltrados);
 
     return productosFiltrados;

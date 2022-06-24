@@ -54,7 +54,7 @@ function agregaElementosEnNovedades() {
         divProductoNovedad.innerHTML =
             `<a href="pages/producto.html" class="text-reset">
                 <div class="card h-100 border-0 fade-in transition-regular">
-                    <img src=${producto.pathImagen} class="card-img-top rounded imagen-2" alt=${producto.nombre}>
+                    <img src=${producto.listPathImagen[0]} class="card-img-top rounded imagen-2" alt=${producto.nombre}>
                     <div class="card-body">
                         <h3 class="card-title fs-5 text-truncate">${producto.nombre}</h5>
                             <p class="card-text fs-3 fw-bold">$${producto.precio}</p>
