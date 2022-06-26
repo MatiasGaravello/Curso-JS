@@ -62,7 +62,7 @@
 
                 </a>
                 <div class="header__menuDerecho navbar-brand order-lg-2 m-0 text-end">
-                    <button onclick="location.href='../pages/carrito.html'">
+                    <button id="btnCarrito" onclick="location.href='../pages/carrito.html'">
                         <div class="d-flex">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16px">
                                 <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -135,17 +135,17 @@
                     <!-- muestro carousel a partir de 768px -->
                     <div id="carousel-producto" class="carousel carousel-dark slide d-md-none" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carousel-producto" data-bs-slide-to="0"
+                            <!-- <button type="button" data-bs-target="#carousel-producto" data-bs-slide-to="0"
                                 class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#carousel-producto" data-bs-slide-to="1"
                                 aria-label="Slide 2"></button>
                             <button type="button" data-bs-target="#carousel-producto" data-bs-slide-to="2"
                                 aria-label="Slide 3"></button>
                             <button type="button" data-bs-target="#carousel-producto" data-bs-slide-to="3"
-                                aria-label="Slide 4"></button>
+                                aria-label="Slide 4"></button> -->
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            <!-- <div class="carousel-item active">
                                 <img src="../assets/imagen-producto-1.png" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
@@ -156,7 +156,7 @@
                             </div>
                             <div class="carousel-item">
                                 <img src="../assets/imagen-producto-4.png" class="d-block w-100" alt="...">
-                            </div>
+                            </div> -->
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-producto"
                             data-bs-slide="prev">
@@ -187,16 +187,16 @@
                         </div>
                         </p>
                         <div id="seccionTalle" class="form-floating">
-                            <select class="form-select" id="floatingTalle" aria-label="Floating label select example">
+                            <select class="form-select" id="selectTalle" aria-label="Floating label select example">
                                 <option selected>Seleccione un talle</option>
                                 <option value="s">S</option>
                                 <option value="m">M</option>
                                 <option value="l">L</option>
                             </select>
-                            <label for="floatingTalle">Talle</label>
+                            <label for="selectTalle">Talle</label>
                         </div>
                         <div class="form-floating my-4">
-                            <select class="form-select" id="floatingCantidad"
+                            <select class="form-select" id="selectCantidad"
                                 aria-label="Floating label select example">
                                 <option value="1" selected>1</option>
                                 <option value="2">2</option>
@@ -206,11 +206,11 @@
                                 <option value="6">6</option>
                                 <option value="7">7</option>
                             </select>
-                            <label for="floatingCantidad">Cantidad</label>
+                            <label for="selectCantidad">Cantidad</label>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary text-uppercase p-3" type="button">Comprar ahora</button>
-                            <button class="btn btn-secondary text-uppercase p-3" type="button">Agregar al
+                            <button id="btnComprar" class="btn btn-primary text-uppercase p-3" type="button">Comprar ahora</button>
+                            <button id="btnAgregarAlCarrito" class="btn btn-secondary text-uppercase p-3" type="button">Agregar al
                                 carrito</button>
                         </div>
                     </div>

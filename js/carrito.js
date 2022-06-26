@@ -1,78 +1,80 @@
-let listDetalleCompra = [];
-const compra = new Compra(listDetalleCompra);
+// let listDetalleCompra = [];
+// const carrito = new Carrito(listDetalleCompra);
 
-function muestraProductos(listaProductos) {
+// function muestraProductos(listaProductos) {
 
-    let mensaje = "";
+//     let mensaje = "";
 
-    for (let producto of listaProductos) {
-        mensaje += producto.id + " - " + producto.nombre + "  $" + producto.precio + "\n";
-    }
+//     for (let producto of listaProductos) {
+//         mensaje += producto.id + " - " + producto.nombre + "  $" + producto.precio + "\n";
+//     }
 
-    return mensaje;
-}
+//     return mensaje;
+// }
 
-function ingresaProductosAlCarrito() {
-    while (true) {
-        let codigoIngresado = prompt("FUNCION SELECCIONADA:  1 - AGREGA PRODUCTOS AL CARRITO\n\nPRODUCTOS:\n" + muestraProductos(listaProductos) + "\nIngrese el ID del producto que desea comprar. En caso de no querer ingresar más productos y visualizar el carrito ingrese la palabra FIN:");
+// function ingresaProductosAlCarrito() {
+//     while (true) {
+//         let codigoIngresado = prompt("FUNCION SELECCIONADA:  1 - AGREGA PRODUCTOS AL CARRITO\n\nPRODUCTOS:\n" + muestraProductos(listaProductos) + "\nIngrese el ID del producto que desea comprar. En caso de no querer ingresar más productos y visualizar el carrito ingrese la palabra FIN:");
 
-        if (validaCodigoIngresado(parseInt(codigoIngresado))) {
-            const producto = listaProductos.find(x => x.id == parseInt(codigoIngresado));
+//         if (validaCodigoIngresado(parseInt(codigoIngresado))) {
+//             const producto = listaProductos.find(x => x.id == parseInt(codigoIngresado));
 
-            const cantidad = parseInt(solicitaCantidad(producto));
+//             const cantidad = parseInt(solicitaCantidad(producto));
 
-            let talle;
+//             let talle;
 
-            if (producto.hasTalle) {
-                talle = parseInt(solicitaTalle(producto, cantidad));
-            } else {
-                talle = 0;
-            }
+//             if (producto.hasTalle) {
+//                 talle = parseInt(solicitaTalle(producto, cantidad));
+//             } else {
+//                 talle = 0;
+//             }
 
-            agregaProductoEnCarrito(producto, compra, talle, cantidad);
-        }
-        else if (codigoIngresado === "FIN") {
-            muestraCarrito();
+//             agregaProductoEnCarrito(producto, compra, talle, cantidad);
+//         }
+//         else if (codigoIngresado === "FIN") {
+//             muestraCarrito();
 
-            break;
-        } else {
-            alert("Opción no válida");
-        }
-    }
+//             break;
+//         } else {
+//             alert("Opción no válida");
+//         }
+//     }
 
-}
+// }
 
-function validaCodigoIngresado(codigo) {
-    return (typeof codigo == 'number' && codigo >= 1 && codigo <= 9);
-}
+// function validaCodigoIngresado(codigo) {
+//     return (typeof codigo == 'number' && codigo >= 1 && codigo <= 9);
+// }
 
-function agregaProductoEnCarrito(producto, compra, talle, cantidad) {
-    let detalleCompraRepetido;
+// function agregaProductoEnCarrito(producto, compra, talle, cantidad) {
+//     let detalleCompraRepetido;
 
-    detalleCompraRepetido = compra.listDetalleCompra.find(detalleCompra => detalleCompra.producto.id === producto.id && detalleCompra.talle === talle);
+//     detalleCompraRepetido = compra.listDetalleCompra.find(detalleCompra => detalleCompra.producto.id === producto.id && detalleCompra.talle === talle);
 
-    //verifico si anteriormente se agregó el producto al carrito. En caso de repetirse, actualizo el detalle existente, 
-    if (detalleCompraRepetido == null) {
-        compra.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
-    } else {
-        detalleCompraRepetido.cantidad += cantidad;
-    }
-}
+//     //verifico si anteriormente se agregó el producto al carrito. En caso de repetirse, actualizo el detalle existente, 
+//     if (detalleCompraRepetido == null) {
+//         compra.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
+//     } else {
+//         detalleCompraRepetido.cantidad += cantidad;
+//     }
+// }
 
-function solicitaCantidad(producto) {
-    const mensajeCantidad = "USTED HA SELECCIONADO:\n" + producto.nombre + "\n$" + producto.precio;
+// function solicitaCantidad(producto) {
+//     const mensajeCantidad = "USTED HA SELECCIONADO:\n" + producto.nombre + "\n$" + producto.precio;
 
-    return prompt(mensajeCantidad + "\n\nIngrese cantidad:");
-}
+//     return prompt(mensajeCantidad + "\n\nIngrese cantidad:");
+// }
 
-function solicitaTalle(producto, cantidad) {
-    const mensajeTalle = "USTED HA SELECCIONADO:\n" + producto.nombre + "\n$" + producto.precio + "\nCantidad: " + cantidad;
+// function solicitaTalle(producto, cantidad) {
+//     const mensajeTalle = "USTED HA SELECCIONADO:\n" + producto.nombre + "\n$" + producto.precio + "\nCantidad: " + cantidad;
 
-    return prompt(mensajeTalle + "\n\nSeleccione un talle del 1 al 3:");
-}
+//     return prompt(mensajeTalle + "\n\nSeleccione un talle del 1 al 3:");
+// }
+
+let total = 0;
 
 function muestraCarrito() {
-    if (compra.getTotal() == 0) {
+    if (getTotal() == 0) {
 
     } else {
         let tbodyDesktop = document.querySelector("tbody");
@@ -80,9 +82,12 @@ function muestraCarrito() {
         tbodyDesktop.innerHTML = "";
         divContenedorMobile.innerHTML = "";
 
-        for (let detalleCompra of compra.listDetalleCompra) {
+
+        for (let detalleCompra of carrito.listDetalleCompra) {
 
             let leyendaTalle = `Talle: ${detalleCompra.talle}`;
+
+            const subtotalDetalle = getSubtotalDetalle(detalleCompra);
 
             if (detalleCompra.talle == 0) {
                 leyendaTalle = `Talle: Único`;
@@ -91,7 +96,7 @@ function muestraCarrito() {
             tbodyDesktop.innerHTML +=
                 `<tr>
                     <td>
-                        <img src=${detalleCompra.producto.pathImagen} alt=${detalleCompra.producto.nombre} class="img-fluid">
+                        <img src=${detalleCompra.producto.listPathImagen[0]} alt=${detalleCompra.producto.nombre} class="img-fluid">
                     </td>
                     <td>
                         <p>${detalleCompra.producto.nombre}</p>
@@ -104,7 +109,7 @@ function muestraCarrito() {
                         <h5>${detalleCompra.cantidad}</h5>
                     </td>
                     <td class="text-center">
-                        <h4>$${detalleCompra.getSubtotal()}</h4>
+                        <h4>$${subtotalDetalle}</h4>
                     </td>
                     <td>
                         <a href="">
@@ -121,7 +126,7 @@ function muestraCarrito() {
                 `<div class="card mb-4 text-center">
                     <div class="row row-cols-3 align-items-center">
                         <div class="col h-100">
-                            <img src=${detalleCompra.producto.pathImagen} alt=${detalleCompra.producto.nombre} class="img-fluid">
+                            <img src=${detalleCompra.producto.listPathImagen[0]} alt=${detalleCompra.producto.nombre} class="img-fluid">
                         </div>
 
                         <div class="col d-flex flex-column p-1">
@@ -132,7 +137,7 @@ function muestraCarrito() {
                         </div>
                         <div class="col">
                             <p class="text-uppercase m-0 fw-bold">Subtotal:</p>
-                            <p class="fw-bold">$${detalleCompra.getSubtotal()}</p>
+                            <p class="fw-bold">$${subtotalDetalle}</p>
                             <a class="d-flex justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="13px"> -->
                                     <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -157,16 +162,29 @@ function muestraCarrito() {
         const costoEnvio = 1000;
 
         pEnvio.innerText = `Envío $${costoEnvio}`;// "Envío $1000";
-        h4Total.innerText = `TOTAL $${compra.getTotal() + costoEnvio}`;
+        h4Total.innerText = `TOTAL $${getTotal() + costoEnvio}`;
 
         pEnvioMobile.innerText =`$${costoEnvio}`;
-        pTotalMobile.innerText = `$${compra.getTotal() + costoEnvio}`;
+        pTotalMobile.innerText = `$${getTotal() + costoEnvio}`;
     }
 }
 
+function getTotal(){
+    let total = 0;
+
+    for (let detalleCompra of carrito.listDetalleCompra) {
+        total += getSubtotalDetalle(detalleCompra);
+    }
+
+    return total;
+}
+
+function getSubtotalDetalle(detalleCompra){
+    return detalleCompra.producto.precio * detalleCompra.cantidad;
+}
 
 //#region  MAIN
 
-ingresaProductosAlCarrito()
+muestraCarrito();
 
 //#endregion

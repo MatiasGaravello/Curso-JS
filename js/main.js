@@ -1,11 +1,13 @@
 //#region VARIABLES GLOBALES
 
 let cantidadProductos = 0;
-let productosEnCarrito;
+let carrito;
 
 const listaProductos = [];
 const listaCategorias = [];
 const listaProductoCategoria = [];
+
+
 
 //#endregion
 
@@ -87,6 +89,10 @@ function asignaCategoriaAProductos() {
     listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.precio <= 4000), listaCategorias.find((x) => x.nombre === "Promociones")));
 }
 
+function guardaCarritoEnLS(){
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
 //#endregion
 
 //#region INICIALIZA VARIABLES
@@ -100,5 +106,15 @@ generaListaProductos();
 generaListaCategorias();
 
 asignaCategoriaAProductos();
+
+if (localStorage.getItem("carrito") !== null) {
+    carrito = JSON.parse(localStorage.getItem("carrito"));
+} else {
+    carrito = new Carrito();
+    
+    guardaCarritoEnLS();
+}
+
+
 
 //#endregion
