@@ -89,7 +89,7 @@ function muestraCarrito() {
         const pEnvioMobile = document.getElementById("envioMobile");
         const pTotalMobile = document.getElementById("totalMobile");
 
-        pEnvio.innerText = `Envío $${costoEnvio}`;// "Envío $1000";
+        pEnvio.innerText = `Envío $${costoEnvio}`;
         h4Total.innerText = `TOTAL $${getTotal() + costoEnvio}`;
 
         pEnvioMobile.innerText =`$${costoEnvio}`;

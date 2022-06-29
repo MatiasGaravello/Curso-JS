@@ -12,7 +12,7 @@ function agregaProductosEnTienda(listaProductosFiltrados) {
                 <div class="card fade-in transition-regular">
                     <div class="row g-0 align-items-strech text-center">
                         <div class="col-5 col-sm-12">
-                            <img src=${producto.listPathImagen[0]} class="img-fluid rounded-start" alt=${producto.nombre}>
+                            <img src=${producto?.listPathImagen[0]} class="img-fluid rounded-start" alt=${producto.nombre}>
                         </div>
                         <div class="col-7 col-sm-12">
                             <div class="card-body h-100 d-flex flex-column justify-content-center">
@@ -35,7 +35,7 @@ function getListProductosOrdenados(listaProductos) {
 
     switch (selectOrdernar.value) {
         case "relevancia":
-            // return listaProductos.slice();
+            //devuelve lista original
             break;
         case "menor_precio":
             listaProductos.sort((a, b) => a.precio - b.precio);
@@ -54,11 +54,11 @@ function getListProductosPorCategoria() {
 
     const productoCategoria = listaProductoCategoria.find(x => x.categoria.id === parseInt(selectCategoria.value));
 
-    return productoCategoria.listaProductos;
+    return productoCategoria?.listaProductos;
 }
 
 function getListProductosFiltrados(productosFiltrados) {
-    productosFiltrados = getListProductosPorCategoria().slice();
+    productosFiltrados = [...getListProductosPorCategoria()];
 
     getListProductosOrdenados(productosFiltrados);
 

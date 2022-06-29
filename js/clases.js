@@ -16,9 +16,9 @@ class DetalleCompra {
         this.talle = talle
     }
 
-    getSubtotal() {
-        return this.producto.precio * this.cantidad;
-    }
+    // getSubtotal() {
+    //     return this.producto.precio * this.cantidad;
+    // }
 }
 
 class Carrito {
@@ -26,17 +26,17 @@ class Carrito {
         this.listDetalleCompra = [];
     }
 
-    getTotal() {
-        let total = 0;
+    // getTotal() {
+    //     let total = 0;
 
-        // if (this.listDetalleCompra != null) {
-        for (let detalleCompra of this.listDetalleCompra) {
-            total += detalleCompra.getSubtotal();
-        }
-        // }
+    //     // if (this.listDetalleCompra != null) {
+    //     for (let detalleCompra of this.listDetalleCompra) {
+    //         total += detalleCompra.getSubtotal();
+    //     }
+    //     // }
 
-        return total;
-    }
+    //     return total;
+    // }
 }
 
 class Categoria {

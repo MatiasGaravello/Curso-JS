@@ -67,7 +67,7 @@ function agregaProductoEnCarrito(producto, talle, cantidad) {
 
         //verifico si anteriormente se agregó el producto al carrito. En caso de repetirse, actualizo el detalle existente, 
         detalleCompraRepetido ? detalleCompraRepetido.cantidad += cantidad : carrito.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
-        
+
         // if (detalleCompraRepetido == null) {
         //     carrito.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
         // } else {
