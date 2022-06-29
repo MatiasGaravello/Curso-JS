@@ -45,9 +45,11 @@ function cargaDetalleProducto(producto) {
 
     document.querySelector("#detalle #descripcionProducto").textContent = producto.descripcion;
 
-    if (!producto.hasTalle) {
-        document.querySelector("#detalle #seccionTalle").setAttribute("display", "none");
-    }
+    document.querySelector("#detalle #seccionTalle").style.display = producto.hasTalle ? "block" : "none";
+
+    // if (!producto.hasTalle) {
+    //     document.querySelector("#detalle #seccionTalle").setAttribute("display", "none");
+    // }
 }
 
 function agregaIndicadoresCarouselProducto(cantidadBotones, contenedorIndicadores) {
@@ -59,15 +61,18 @@ function agregaIndicadoresCarouselProducto(cantidadBotones, contenedorIndicadore
 }
 
 function agregaProductoEnCarrito(producto, talle, cantidad) {
-    if (validaTalle(talle)) {
+
+    if (!producto.hasTalle || validaTalle(talle)) {
         let detalleCompraRepetido = carrito.listDetalleCompra.find(detalleCompra => detalleCompra.producto.id === producto.id && detalleCompra.talle === talle);
 
         //verifico si anteriormente se agregó el producto al carrito. En caso de repetirse, actualizo el detalle existente, 
-        if (detalleCompraRepetido == null) {
-            carrito.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
-        } else {
-            detalleCompraRepetido.cantidad += cantidad;
-        }
+        detalleCompraRepetido ? detalleCompraRepetido.cantidad += cantidad : carrito.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
+        
+        // if (detalleCompraRepetido == null) {
+        //     carrito.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
+        // } else {
+        //     detalleCompraRepetido.cantidad += cantidad;
+        // }
 
         document.querySelector("header #btnCarrito").setCustomValidity("Producto Agregado");
         document.querySelector("header #btnCarrito").reportValidity();
@@ -112,15 +117,17 @@ const productoSeleccionado = JSON.parse(localStorage.getItem("productoSelecciona
 cargaPaginaProducto(productoSeleccionado);
 
 document.getElementById("btnAgregarAlCarrito").onclick = () => {
-    if (agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad())) {
-        //redirige a la tienda luego de un tiempo 
-        setTimeout(function () { window.open("./tienda.html", "_self"); }, 1500);
-    }
+    // if (agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad())) {
+    //     //redirige a la tienda luego de un tiempo 
+    //     setTimeout(function () { window.open("./tienda.html", "_self"); }, 1500);
+    // }
+    agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad()) && setTimeout(function () { window.open("./tienda.html", "_self"); }, 1500);
 };
 
 document.getElementById("btnComprar").onclick = () => {
-    if (agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad())) {
-        window.open("./carrito.html", "_self");
-    }
+    // if (agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad())) {
+    //     window.open("./carrito.html", "_self");
+    // }
+    agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad()) && window.open("./carrito.html", "_self");
 };
 

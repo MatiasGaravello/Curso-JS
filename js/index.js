@@ -32,11 +32,12 @@ function agregaImagenesCarousel(imagenConDescripcion, contenedorItems) {
     imagenConDescripcion.forEach(x => {
         const carouselItem = document.createElement("div");
 
-        if (imagenConDescripcion[0] != x) {
-            carouselItem.className = "carousel-item";
-        } else {
-            carouselItem.className = "carousel-item active";
-        }
+        carouselItem.className = imagenConDescripcion[0] !== x ? "carousel-item" : "carousel-item active";
+        // if (imagenConDescripcion[0] != x) {
+        //     carouselItem.className = "carousel-item";
+        // } else {
+        //     carouselItem.className = "carousel-item active";
+        // }
 
         carouselItem.innerHTML = `<img src=${x.pathImagen} class="d-block w-100" alt=${x.descripcion}>`;
 

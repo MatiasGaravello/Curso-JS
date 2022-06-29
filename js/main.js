@@ -7,8 +7,6 @@ const listaProductos = [];
 const listaCategorias = [];
 const listaProductoCategoria = [];
 
-
-
 //#endregion
 
 //#region FUNCIONES INICIALIZACION
@@ -61,9 +59,6 @@ function generaListaCategorias() {
     listaCategorias.push(new Categoria(9, "Billeteras"));
 
     listaCategorias.push(new Categoria(10, "Promociones"));
-
-
-
 }
 
 function asignaCategoriaAProductos() {
@@ -97,24 +92,22 @@ function guardaCarritoEnLS(){
 
 //#region INICIALIZA VARIABLES
 
-// 
-
-
-
 generaListaProductos();
 
 generaListaCategorias();
 
 asignaCategoriaAProductos();
 
-if (localStorage.getItem("carrito") !== null) {
-    carrito = JSON.parse(localStorage.getItem("carrito"));
-} else {
-    carrito = new Carrito();
+carrito = JSON.parse(localStorage.getItem("carrito")) || new Carrito();
+
+guardaCarritoEnLS();
+
+// if (localStorage.getItem("carrito") !== null) {
+//     carrito = JSON.parse(localStorage.getItem("carrito"));
+// } else {
+//     carrito = new Carrito();
     
-    guardaCarritoEnLS();
-}
-
-
+//     guardaCarritoEnLS();
+// }
 
 //#endregion

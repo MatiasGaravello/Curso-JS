@@ -1,77 +1,6 @@
-// let listDetalleCompra = [];
-// const carrito = new Carrito(listDetalleCompra);
-
-// function muestraProductos(listaProductos) {
-
-//     let mensaje = "";
-
-//     for (let producto of listaProductos) {
-//         mensaje += producto.id + " - " + producto.nombre + "  $" + producto.precio + "\n";
-//     }
-
-//     return mensaje;
-// }
-
-// function ingresaProductosAlCarrito() {
-//     while (true) {
-//         let codigoIngresado = prompt("FUNCION SELECCIONADA:  1 - AGREGA PRODUCTOS AL CARRITO\n\nPRODUCTOS:\n" + muestraProductos(listaProductos) + "\nIngrese el ID del producto que desea comprar. En caso de no querer ingresar más productos y visualizar el carrito ingrese la palabra FIN:");
-
-//         if (validaCodigoIngresado(parseInt(codigoIngresado))) {
-//             const producto = listaProductos.find(x => x.id == parseInt(codigoIngresado));
-
-//             const cantidad = parseInt(solicitaCantidad(producto));
-
-//             let talle;
-
-//             if (producto.hasTalle) {
-//                 talle = parseInt(solicitaTalle(producto, cantidad));
-//             } else {
-//                 talle = 0;
-//             }
-
-//             agregaProductoEnCarrito(producto, compra, talle, cantidad);
-//         }
-//         else if (codigoIngresado === "FIN") {
-//             muestraCarrito();
-
-//             break;
-//         } else {
-//             alert("Opción no válida");
-//         }
-//     }
-
-// }
-
-// function validaCodigoIngresado(codigo) {
-//     return (typeof codigo == 'number' && codigo >= 1 && codigo <= 9);
-// }
-
-// function agregaProductoEnCarrito(producto, compra, talle, cantidad) {
-//     let detalleCompraRepetido;
-
-//     detalleCompraRepetido = compra.listDetalleCompra.find(detalleCompra => detalleCompra.producto.id === producto.id && detalleCompra.talle === talle);
-
-//     //verifico si anteriormente se agregó el producto al carrito. En caso de repetirse, actualizo el detalle existente, 
-//     if (detalleCompraRepetido == null) {
-//         compra.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
-//     } else {
-//         detalleCompraRepetido.cantidad += cantidad;
-//     }
-// }
-
-// function solicitaCantidad(producto) {
-//     const mensajeCantidad = "USTED HA SELECCIONADO:\n" + producto.nombre + "\n$" + producto.precio;
-
-//     return prompt(mensajeCantidad + "\n\nIngrese cantidad:");
-// }
-
-// function solicitaTalle(producto, cantidad) {
-//     const mensajeTalle = "USTED HA SELECCIONADO:\n" + producto.nombre + "\n$" + producto.precio + "\nCantidad: " + cantidad;
-
-//     return prompt(mensajeTalle + "\n\nSeleccione un talle del 1 al 3:");
-// }
-
 let total = 0;
+
+const costoEnvio = 1000;
 
 function muestraCarrito() {
     if (getTotal() == 0) {
@@ -85,13 +14,14 @@ function muestraCarrito() {
 
         for (let detalleCompra of carrito.listDetalleCompra) {
 
-            let leyendaTalle = `Talle: ${detalleCompra.talle}`;
+            const leyendaTalle = detalleCompra.talle == 0 ?  `Talle: Único` : `Talle: ${detalleCompra.talle}`;
+            // let leyendaTalle = `Talle: ${detalleCompra.talle}`;
+
+            // if (detalleCompra.talle == 0) {
+            //     leyendaTalle = `Talle: Único`;
+            // }
 
             const subtotalDetalle = getSubtotalDetalle(detalleCompra);
-
-            if (detalleCompra.talle == 0) {
-                leyendaTalle = `Talle: Único`;
-            }
 
             tbodyDesktop.innerHTML +=
                 `<tr>
@@ -159,8 +89,6 @@ function muestraCarrito() {
         const pEnvioMobile = document.getElementById("envioMobile");
         const pTotalMobile = document.getElementById("totalMobile");
 
-        const costoEnvio = 1000;
-
         pEnvio.innerText = `Envío $${costoEnvio}`;// "Envío $1000";
         h4Total.innerText = `TOTAL $${getTotal() + costoEnvio}`;
 
@@ -179,8 +107,12 @@ function getTotal(){
     return total;
 }
 
-function getSubtotalDetalle(detalleCompra){
-    return detalleCompra.producto.precio * detalleCompra.cantidad;
+// function getSubtotalDetalle(detalleCompra){
+//     return detalleCompra.producto.precio * detalleCompra.cantidad;
+// }
+
+function getSubtotalDetalle({producto:{precio}, cantidad}){
+    return precio * cantidad;
 }
 
 //#region  MAIN
