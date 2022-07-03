@@ -62,33 +62,43 @@ function muestraCarrito() {
 
             btnEliminar.onclick = () => { muestraConfirmacionEliminarProducto(detalleCompra, leyendaTalle) };
 
-            divContenedorMobile.innerHTML +=
-                `<div class="card mb-4 text-center">
-                    <div class="row row-cols-3 align-items-center">
-                        <div class="col h-100">
-                            <img src=${detalleCompra.producto.listPathImagen[0]} alt=${detalleCompra.producto.nombre} class="img-fluid">
-                        </div>
+            const divTarjetaMobile = document.createElement("div");
 
-                        <div class="col d-flex flex-column p-1">
-                            <p class="card-title fw-bold">${detalleCompra.producto.nombre}</p>
-                            <p class="card-text">${leyendaTalle}</p>
-                            <p class="card-text">Cantidad: ${detalleCompra.cantidad}</p>
-                            <p class="card-text fw-bold">Precio: $${detalleCompra.producto.precio}</p>
-                        </div>
-                        <div class="col">
-                            <p class="text-uppercase m-0 fw-bold">Subtotal:</p>
-                            <p class="fw-bold">$${subtotalDetalle}</p>
-                            <a class="d-flex justify-content-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="13px"> -->
-                                    <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                    <path
-                                        d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM394.8 466.1C393.2 492.3 372.3 512 346.9 512H101.1C75.75 512 54.77 492.3 53.19 466.1L31.1 128H416L394.8 466.1z" />
-                                </svg>
-                                <p class="m-0 ps-1">Eliminar</p>
-                            </a>
-                        </div>
+            divTarjetaMobile.className = "card mb-4 text-center";
+
+            divTarjetaMobile.innerHTML =
+                `<div class="row row-cols-3 align-items-center">
+                    <div class="col h-100">
+                        <img src=${detalleCompra.producto.listPathImagen[0]} alt=${detalleCompra.producto.nombre} class="img-fluid">
+                    </div>
+
+                    <div class="col d-flex flex-column p-1">
+                        <p class="card-title fw-bold">${detalleCompra.producto.nombre}</p>
+                        <p class="card-text">${leyendaTalle}</p>
+                        <p class="card-text">Cantidad: ${detalleCompra.cantidad}</p>
+                        <p class="card-text fw-bold">Precio: $${detalleCompra.producto.precio}</p>
+                    </div>
+                    <div class="col">
+                        <p class="text-uppercase m-0 fw-bold">Subtotal:</p>
+                        <p class="fw-bold">$${subtotalDetalle}</p>
                     </div>
                 </div>`;
+
+            const btnEliminarMobile = document.createElement("a");
+            btnEliminarMobile.className = "d-flex justify-content-center";
+            btnEliminarMobile.innerHTML =
+                `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="13px"> -->
+                    <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0H284.2C296.3 0 307.4 6.848 312.8 17.69L320 32H416C433.7 32 448 46.33 448 64C448 81.67 433.7 96 416 96H32C14.33 96 0 81.67 0 64C0 46.33 14.33 32 32 32H128L135.2 17.69zM394.8 466.1C393.2 492.3 372.3 512 346.9 512H101.1C75.75 512 54.77 492.3 53.19 466.1L31.1 128H416L394.8 466.1z" />
+                </svg>
+                <p class="m-0 ps-1">Eliminar</p>`;
+
+            btnEliminarMobile.onclick = () => { muestraConfirmacionEliminarProducto(detalleCompra, leyendaTalle) };
+
+            divTarjetaMobile.querySelector("div .col:last-child").appendChild(btnEliminarMobile);
+
+            divContenedorMobile.appendChild(divTarjetaMobile);
         }
 
         const pEnvio = document.getElementById("envio");
@@ -128,6 +138,9 @@ function muestraConfirmacionEliminarProducto(detalleCompra, leyendaTalle) {
         title: 'Seguro que deseas eliminar este producto?',
         text: `${detalleCompra.producto.nombre} Cantidad:${detalleCompra.cantidad} ${leyendaTalle}`,
         icon: 'warning',
+        imageUrl: `${detalleCompra.producto.listPathImagen[0]}`,
+        imageWidth: 200,
+        imageHeight: 220,
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
