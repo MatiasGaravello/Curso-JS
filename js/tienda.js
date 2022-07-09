@@ -58,6 +58,9 @@ function getListProductosPorCategoria() {
 }
 
 function getListProductosFiltrados(productosFiltrados) {
+
+    // const resp = await getListaProductos();
+
     productosFiltrados = [...getListProductosPorCategoria()];
 
     getListProductosOrdenados(productosFiltrados);
@@ -65,10 +68,18 @@ function getListProductosFiltrados(productosFiltrados) {
     return productosFiltrados;
 }
 
-agregaProductosEnTienda(getListProductosFiltrados());
+async function inicializaTienda() {
+    await getListaProductos();
 
-for (const selectFiltro of document.getElementsByClassName("form-select")) {
-    selectFiltro.onclick = () => {
-        agregaProductosEnTienda(getListProductosFiltrados());
-    };
+    agregaProductosEnTienda(getListProductosFiltrados());
+
+    for (const selectFiltro of document.getElementsByClassName("form-select")) {
+        selectFiltro.onclick = () => {
+            agregaProductosEnTienda(getListProductosFiltrados());
+        };
+    }
 }
+
+inicializaTienda();
+
+

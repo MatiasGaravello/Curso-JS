@@ -1,9 +1,10 @@
+    
     [
         {
             "nombre": "Mini-pocket",
             "precio": 2000,
             "hasTalle": false,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/minipocket.png"
             ],
             "descripcion": ""
@@ -12,7 +13,7 @@
             "nombre": "Cartera Total Black",
             "precio": 4200,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/cartera_total_black.png"
             ],
             "descripcion": ""
@@ -21,7 +22,7 @@
             "nombre": "Bandolera negra con cadena",
             "precio": 3000,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/bandolera-negra.png"
             ],
             "descripcion": ""
@@ -30,7 +31,7 @@
             "nombre": "Bolso Blanco",
             "precio": 5000,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/bolso-mendiano-blanco.png"
             ],
             "descripcion": ""
@@ -39,7 +40,7 @@
             "nombre": "Bolso de viaje XXL",
             "precio": 5200,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/bolso-de-viaje-1.png",
                 "../assets/bolso-de-viaje-2.png"
             ],
@@ -49,7 +50,7 @@
             "nombre": "Mochila beige",
             "precio": 4500,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/mochila_beige.png"
             ],
             "descripcion": ""
@@ -58,7 +59,7 @@
             "nombre": "Mochila Croco Negro",
             "precio": 4700,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/mochila-croco-negro.png"
             ],
             "descripcion": ""
@@ -67,7 +68,7 @@
             "nombre": "Riñonera Negra",
             "precio": 3000,
             "hasTalle": false,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/riñonera_negra.png"
             ],
             "descripcion": ""
@@ -76,7 +77,7 @@
             "nombre": "Portanotebook con manija",
             "precio": 3400,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/portanotebook_con_manija.png"
             ],
             "descripcion": ""
@@ -85,7 +86,7 @@
             "nombre": "Mochila Negra",
             "precio": 4000,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/mochi-small-negra.png"
             ],
             "descripcion": ""
@@ -94,7 +95,7 @@
             "nombre": "Mochila Silver Metalizado",
             "precio": 4500,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/mochi_metalizada.png"
             ],
             "descripcion": ""
@@ -103,7 +104,7 @@
             "nombre": "Mini Bag Riñonera 2 en 1",
             "precio": 4000,
             "hasTalle": true,
-            "listaImagenes": [
+            "listPathImagen": [
                 "../assets/imagen-producto-1.png",
                 "../assets/imagen-producto-2.png",
                 "../assets/imagen-producto-3.png",

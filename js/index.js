@@ -2,7 +2,7 @@ const listaPublicidad = [{ pathImagen: "../assets/imagen-principal-1.jpg", descr
 { pathImagen: "../assets/imagen-principal-2.jpg", descripcion: "riñonera negra con tachas" },
 { pathImagen: "../assets/imagen-principal-3.jpg", descripcion: "mochila roja con charol negro" }];
 
-const listNovedades = [listaProductos[4], listaProductos[2], listaProductos[7], listaProductos[9]];
+// const listNovedades = [listaProductos[4], listaProductos[2], listaProductos[7], listaProductos[9]];
 
 const listNuestrosProductos = [{ pathImagen: "assets/producto-riñonera1.jpg", nombre: "riñoneras" },
 { pathImagen: "assets/producto-mochila.jpg", nombre: "mochilas" },
@@ -45,11 +45,13 @@ function agregaImagenesCarousel(imagenConDescripcion, contenedorItems) {
     });
 }
 
-function agregaElementosEnNovedades() {
+async function agregaElementosEnNovedades() {
     const divNovedades = document.querySelector("#novedades .row");
     divNovedades.innerHTML = "";
 
-    for (const producto of listNovedades) {
+    const listaNovedades = [listaProductos[4], listaProductos[2], listaProductos[7], listaProductos[9]];
+
+    for (const producto of listaNovedades) {
         const divProductoNovedad = document.createElement("div");
         divProductoNovedad.className = "col";
         divProductoNovedad.innerHTML =
@@ -88,8 +90,16 @@ function agregaElementosEnNuestrosProductos() {
     }
 }
 
-agregaElementosEnNovedades();
+async function inicializaIndex(){
+    await getListaProductos();
 
-agregaElementosEnNuestrosProductos();
+    agregaElementosEnNovedades();
 
-agregaElementosPublicidad();
+    agregaElementosEnNuestrosProductos();
+    
+    agregaElementosPublicidad();
+}
+
+inicializaIndex();
+
+
