@@ -1,20 +1,8 @@
-const listaPublicidad = [{ pathImagen: "../assets/imagen-principal-1.jpg", descripcion: "mochila nude y cuero serpiente" },
-{ pathImagen: "../assets/imagen-principal-2.jpg", descripcion: "riñonera negra con tachas" },
-{ pathImagen: "../assets/imagen-principal-3.jpg", descripcion: "mochila roja con charol negro" }];
+let listaPublicidad;
+let listaProductos;
+let listNuestrosProductos;
 
-// const listNovedades = [listaProductos[4], listaProductos[2], listaProductos[7], listaProductos[9]];
-
-const listNuestrosProductos = [{ pathImagen: "assets/producto-riñonera1.jpg", nombre: "riñoneras" },
-{ pathImagen: "assets/producto-mochila.jpg", nombre: "mochilas" },
-{ pathImagen: "assets/producto-bolso.jpg", nombre: "bolsos" },
-{ pathImagen: "assets/producto-clutch.jpg", nombre: "clutches" },
-{ pathImagen: "assets/producto-minibag.jpg", nombre: "minibags" },
-{ pathImagen: "assets/producto-portanotebook.jpg", nombre: "portanotebooks" },
-{ pathImagen: "assets/producto-billetera.jpg", nombre: "billeteras" },
-{ pathImagen: "assets/producto-cartuchera.jpg", nombre: "cartucheras" },
-{ pathImagen: "assets/producto-bandolera.jpg", nombre: "bandoleras" }];
-
-function agregaElementosPublicidad() {
+async function agregaElementosPublicidad() {
     agregaIndicadoresCarousel(listaPublicidad.length, document.querySelector("#carouselPublicidad .carousel-indicators"));
 
     agregaImagenesCarousel(listaPublicidad, document.querySelector("#carouselPublicidad .carousel-inner"));
@@ -33,11 +21,6 @@ function agregaImagenesCarousel(imagenConDescripcion, contenedorItems) {
         const carouselItem = document.createElement("div");
 
         carouselItem.className = imagenConDescripcion[0] !== x ? "carousel-item" : "carousel-item active";
-        // if (imagenConDescripcion[0] != x) {
-        //     carouselItem.className = "carousel-item";
-        // } else {
-        //     carouselItem.className = "carousel-item active";
-        // }
 
         carouselItem.innerHTML = `<img src=${x.pathImagen} class="d-block w-100" alt=${x.descripcion}>`;
 
@@ -90,14 +73,26 @@ function agregaElementosEnNuestrosProductos() {
     }
 }
 
-async function inicializaIndex(){
-    await getListaProductos();
+async function setInfoElementosIndex() {
+    const resp = await fetch("/data.json");
+
+    const objetoJson = await resp.json();
+
+    listaPublicidad = objetoJson.listaPublicidad;
+
+    listaProductos = objetoJson.listaProductos;
+
+    listNuestrosProductos = objetoJson.listNuestrosProductos;
+}
+
+async function inicializaIndex() {
+    await setInfoElementosIndex();
+
+    agregaElementosPublicidad();
 
     agregaElementosEnNovedades();
 
     agregaElementosEnNuestrosProductos();
-    
-    agregaElementosPublicidad();
 }
 
 inicializaIndex();

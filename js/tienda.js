@@ -69,7 +69,7 @@ function getListProductosFiltrados(productosFiltrados) {
 }
 
 async function inicializaTienda() {
-    await getListaProductos();
+    const listaProductos = await getListaProductos();
 
     agregaProductosEnTienda(getListProductosFiltrados());
 
