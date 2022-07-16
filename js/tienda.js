@@ -1,3 +1,7 @@
+const listaProductoCategoria = [];
+
+let listaCategorias;
+
 function agregaProductosEnTienda(listaProductosFiltrados) {
     let divContenedorProductos = document.getElementById("contenedor-productos");
     divContenedorProductos.innerHTML = "";
@@ -52,14 +56,16 @@ function getListProductosPorCategoria() {
 
     const selectCategoria = document.getElementById("selectCategoria");
 
-    const productoCategoria = listaProductoCategoria.find(x => x.categoria.id === parseInt(selectCategoria.value));
+    // const categoriaElegida = idCategoria || parseInt(selectCategoria.value);
+
+    const categoriaElegida = parseInt(localStorage.getItem("categoriaElegida"));
+
+    const productoCategoria = listaProductoCategoria.find(x => x.categoria.id === categoriaElegida);
 
     return productoCategoria?.listaProductos;
 }
 
 function getListProductosFiltrados(productosFiltrados) {
-
-    // const resp = await getListaProductos();
 
     productosFiltrados = [...getListProductosPorCategoria()];
 
@@ -68,8 +74,39 @@ function getListProductosFiltrados(productosFiltrados) {
     return productosFiltrados;
 }
 
+function asignaCategoriaAProductos(listaProductos) {
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos, listaCategorias.find((x) => x.nombre === "Todas")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Cartera")), listaCategorias.find((x) => x.nombre === "Carteras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Bolso")), listaCategorias.find((x) => x.nombre === "Bolsos y Maletines")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Mochila")), listaCategorias.find((x) => x.nombre === "Mochilas")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Riñonera")), listaCategorias.find((x) => x.nombre === "Riñoneras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Portanotebook")), listaCategorias.find((x) => x.nombre === "Portanotebooks")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Bandolera")), listaCategorias.find((x) => x.nombre === "Bandoleras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("Cartuchera")), listaCategorias.find((x) => x.nombre === "Cartucheras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.nombre.includes("pocket")), listaCategorias.find((x) => x.nombre === "Billeteras")));
+
+    listaProductoCategoria.push(new ProductoCategoria(listaProductos.filter((x) => x.precio <= 4000), listaCategorias.find((x) => x.nombre === "Promociones")));
+}
+
 async function inicializaTienda() {
-    const listaProductos = await getListaProductos();
+    const resp = await fetch("/data.json");
+
+    const objetoJson = await resp.json();
+
+    const listaProductos = objetoJson.listaProductos;
+
+    listaCategorias = objetoJson.listaCategorias;
+
+    asignaCategoriaAProductos(listaProductos);
 
     agregaProductosEnTienda(getListProductosFiltrados());
 

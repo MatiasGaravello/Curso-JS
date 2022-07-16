@@ -70,19 +70,27 @@ function agregaElementosEnNuestrosProductos() {
             </a>`
 
         divNuestrosProductos.appendChild(divCategoriaProducto);
+
+        divCategoriaProducto.onclick = () => {
+            localStorage.setItem("categoriaElegida", 2);
+
+
+            window.open("./producto.html", "_self");
+
+
+            // agregaProductosEnTienda(getListProductosPorCategoria(2));
+        }
     }
 }
 
 async function setInfoElementosIndex() {
-    const resp = await fetch("/data.json");
+    const archivoJSON = await getArchivoJSON();
 
-    const objetoJson = await resp.json();
+    listaPublicidad = archivoJSON.listaPublicidad;
 
-    listaPublicidad = objetoJson.listaPublicidad;
+    listaProductos = archivoJSON.listaProductos;
 
-    listaProductos = objetoJson.listaProductos;
-
-    listNuestrosProductos = objetoJson.listNuestrosProductos;
+    listNuestrosProductos = archivoJSON.listNuestrosProductos;
 }
 
 async function inicializaIndex() {
