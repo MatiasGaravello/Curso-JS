@@ -1,6 +1,7 @@
 let listaPublicidad;
 let listaProductos;
 let listNuestrosProductos;
+let listaCategorias;
 
 async function agregaElementosPublicidad() {
     agregaIndicadoresCarousel(listaPublicidad.length, document.querySelector("#carouselPublicidad .carousel-indicators"));
@@ -49,6 +50,10 @@ async function agregaElementosEnNovedades() {
             </a>`
 
         divNovedades.appendChild(divProductoNovedad);
+
+        divProductoNovedad.onclick = () => {
+            localStorage.setItem("productoSeleccionado", JSON.stringify(producto))
+        }
     }
 }
 
@@ -56,7 +61,7 @@ function agregaElementosEnNuestrosProductos() {
     let divNuestrosProductos = document.querySelector("#productos .row");
     divNuestrosProductos.innerHTML = "";
 
-    for (const categoria of listNuestrosProductos) {
+    listNuestrosProductos.forEach(categoria => {
         const divCategoriaProducto = document.createElement("div");
         divCategoriaProducto.className = "col";
         divCategoriaProducto.innerHTML =
@@ -72,15 +77,12 @@ function agregaElementosEnNuestrosProductos() {
         divNuestrosProductos.appendChild(divCategoriaProducto);
 
         divCategoriaProducto.onclick = () => {
-            localStorage.setItem("categoriaElegida", 2);
-
+            localStorage.setItem("categoriaElegida", categoria.id);
 
             window.open("./producto.html", "_self");
-
-
-            // agregaProductosEnTienda(getListProductosPorCategoria(2));
         }
-    }
+
+    })
 }
 
 async function setInfoElementosIndex() {
@@ -91,6 +93,8 @@ async function setInfoElementosIndex() {
     listaProductos = archivoJSON.listaProductos;
 
     listNuestrosProductos = archivoJSON.listNuestrosProductos;
+
+    listaCategorias = archivoJSON.listaCategorias;
 }
 
 async function inicializaIndex() {

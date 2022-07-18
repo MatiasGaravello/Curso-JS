@@ -1,6 +1,7 @@
     {
         "listaProductos": [
             {
+                "idProducto":100,
                 "nombre": "Mini-pocket",
                 "precio": 2000,
                 "hasTalle": false,
@@ -10,6 +11,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":101,
                 "nombre": "Cartera Total Black",
                 "precio": 4200,
                 "hasTalle": true,
@@ -19,6 +21,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":102,
                 "nombre": "Bandolera negra con cadena",
                 "precio": 3000,
                 "hasTalle": true,
@@ -28,6 +31,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":103,
                 "nombre": "Bolso Blanco",
                 "precio": 5000,
                 "hasTalle": true,
@@ -37,6 +41,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":104,
                 "nombre": "Bolso de viaje XXL",
                 "precio": 5200,
                 "hasTalle": true,
@@ -47,6 +52,7 @@
                 "descripcion": "En esta ocasión combinamos Charol Negro con Nude Mate y le dimos brillo con nuestro Glitter multicolor en las correas. Que les parece?"
             },
             {
+                "idProducto":105,
                 "nombre": "Mochila beige",
                 "precio": 4500,
                 "hasTalle": true,
@@ -56,6 +62,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":106,
                 "nombre": "Mochila Croco Negro",
                 "precio": 4700,
                 "hasTalle": true,
@@ -65,6 +72,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":107,
                 "nombre": "Riñonera Negra",
                 "precio": 3000,
                 "hasTalle": false,
@@ -74,6 +82,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":108,
                 "nombre": "Portanotebook con manija",
                 "precio": 3400,
                 "hasTalle": true,
@@ -83,6 +92,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":109,
                 "nombre": "Mochila Negra",
                 "precio": 4000,
                 "hasTalle": true,
@@ -92,6 +102,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":110,
                 "nombre": "Mochila Silver Metalizado",
                 "precio": 4500,
                 "hasTalle": true,
@@ -101,6 +112,7 @@
                 "descripcion": ""
             },
             {
+                "idProducto":111,
                 "nombre": "Mini Bag Riñonera 2 en 1",
                 "precio": 4000,
                 "hasTalle": true,
@@ -111,6 +123,16 @@
                     "../assets/imagen-producto-4.png"
                 ],
                 "descripcion": "Si así es, cambiándole la posición de la correa la podes usar como Riñonera o solo como Bandolera. Vos elegí la opción que más te guste según tu outfit."
+            },
+            {
+                "idProducto":112,
+                "nombre": "Clutch Negro",
+                "precio": 3000,
+                "hasTalle": false,
+                "listPathImagen": [
+                    "../assets/clutch.png"
+                ],
+                "descripcion": "CLUTCH/SOBRE DE FIESTA✨✨✨. Lo hacemos del color que necesites para tu outfit🔥. Muy cómodo para esa fiesta que tenés, podes guardar el celular, billetera, llave su makeup 🔥"
             }
         ],
         "listaCategorias": [
@@ -153,6 +175,10 @@
             {
                 "id": 10,
                 "nombre": "Promociones"
+            },
+            {
+                "id": 11,
+                "nombre": "Clutches"
             }
         ],
         "listaPublicidad": [
@@ -172,39 +198,48 @@
         "listNuestrosProductos": [
             {
                 "pathImagen": "assets/producto-riñonera1.jpg",
-                "nombre": "riñoneras"
+                "nombre": "riñoneras",
+                "id": 5
             },
             {
                 "pathImagen": "assets/producto-mochila.jpg",
-                "nombre": "mochilas"
+                "nombre": "mochilas",
+                "id": 4
             },
             {
                 "pathImagen": "assets/producto-bolso.jpg",
-                "nombre": "bolsos"
+                "nombre": "bolsos",
+                "id": 3
             },
             {
                 "pathImagen": "assets/producto-clutch.jpg",
-                "nombre": "clutches"
+                "nombre": "clutches",
+                "id": 11
             },
             {
                 "pathImagen": "assets/producto-minibag.jpg",
-                "nombre": "minibags"
+                "nombre": "minibags",
+                "id": 5
             },
             {
                 "pathImagen": "assets/producto-portanotebook.jpg",
-                "nombre": "portanotebooks"
+                "nombre": "portanotebooks",
+                "id": 6
             },
             {
                 "pathImagen": "assets/producto-billetera.jpg",
-                "nombre": "billeteras"
+                "nombre": "billeteras",
+                "id": 9
             },
             {
                 "pathImagen": "assets/producto-cartuchera.jpg",
-                "nombre": "cartucheras"
+                "nombre": "cartucheras",
+                "id": 8
             },
             {
                 "pathImagen": "assets/producto-bandolera.jpg",
-                "nombre": "bandoleras"
+                "nombre": "bandoleras",
+                "id": 7
             }
         ]
     }

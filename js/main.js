@@ -28,4 +28,9 @@ categoriaElegida = parseInt(localStorage.getItem("categoriaElegida") || 1)
 
 guardaCarritoEnLS()
 
+document.getElementById("menuTienda").onclick = () => {
+    localStorage.setItem("categoriaElegida", 1);
+}
+
+
 //#endregion
