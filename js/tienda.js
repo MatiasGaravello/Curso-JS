@@ -15,6 +15,8 @@ function agregaProductosEnTienda(listaProductos) {
 
         contenedorProducto.setAttribute("data-productoid", strId);
 
+        contenedorProducto.setAttribute("data-productoNombre", producto.nombre);
+
         contenedorProducto.innerHTML =
             `<a href="../pages/producto.html" class="text-reset">
                 <div class="card fade-in transition-regular">
@@ -75,21 +77,6 @@ function getListProductosFiltrados() {
     return productosFiltrados;
 }
 
-function filtraProductosPorCategoria() {
-    const divContenedorProductos = document.getElementById("contenedor-productos");
-
-    const productoCategoria = listaProductoCategoria.find(x => x.categoria.id === parseInt(selectCategoria.value));
-
-    // const productosFiltrados = divContenedorProductos.childNodes.filter(x => cccccccc)
-
-    divContenedorProductos.childNodes.forEach(x => {
-        productoCategoria.listaProductos.find(producto => producto.idProducto === parseInt(x.dateset.productoid)) && console.log("x.dateset.productoid") // x.setAttribute("display", "block") || x.setAttribute("display", "none");
-        // console.log(x.dataset.productoid);
-    })
-
-    // x.dataset.productoid 
-}
-
 function asignaCategoriaAProductos(listaProductos) {
 
     listaProductoCategoria.push(new ProductoCategoria(listaProductos, listaCategorias.find((x) => x.nombre === "Todas")));
@@ -134,6 +121,16 @@ function creaSelectCategoria() {
 
 }
 
+function buscaProducto(cadenaBusqueda) {
+    document.getElementById("contenedor-productos").childNodes.forEach(x => {
+        if (x.dataset.productonombre.includes(cadenaBusqueda)) {
+            x.style.display = ""
+        } else {
+            x.style.display = "none"
+        }
+    })
+}
+
 async function inicializaTienda() {
     const resp = await fetch("/data.json");
 
@@ -147,17 +144,33 @@ async function inicializaTienda() {
 
     asignaCategoriaAProductos(listaProductos);
 
-    agregaProductosEnTienda(listaProductos);
+    agregaProductosEnTienda(getListProductosFiltrados());
 
-    // getListProductosFiltrados()
+    const txtBusqueda = document.getElementById("txtBusqueda")
 
     for (const selectFiltro of document.getElementsByClassName("form-select")) {
-        selectFiltro.onclick = () => {
-            // agregaProductosEnTienda(getListProductosFiltrados());
-            filtraProductosPorCategoria();
+        selectFiltro.onchange = () => {
+            agregaProductosEnTienda(getListProductosFiltrados());
+
             localStorage.setItem("categoriaElegida", selectFiltro.value);
+
+            txtBusqueda.value = ""
         };
     }
+
+    document.getElementById("btnBuscar").onclick = (evt) => {
+        evt.preventDefault()
+        buscaProducto(txtBusqueda.value)
+    }
+
+    //reseteo la busqueda en caso
+    txtBusqueda.oninput = () => {
+        txtBusqueda.value.length == 0 && document.getElementById("contenedor-productos").childNodes.forEach(x => {
+            x.style.display = "block"
+        })
+    }
+
+
 }
 
 inicializaTienda();
