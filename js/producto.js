@@ -48,6 +48,21 @@ function cargaDetalleProducto(producto) {
     document.querySelector("#detalle #seccionTalle").style.display = producto.hasTalle ? "block" : "none";
 }
 
+function cargaSelectCantidad() {
+    const selectCantidad = document.getElementById("selectCantidad")
+
+    for (i = 1; i < 16; i++) {
+        const optionCantidad = document.createElement("option")
+        optionCantidad.value = i
+        optionCantidad.innerText = i
+
+        i === 1 && optionCantidad.setAttribute("selected", "selected")
+
+        selectCantidad.appendChild(optionCantidad)
+
+    }
+}
+
 function agregaIndicadoresCarouselProducto(cantidadBotones, contenedorIndicadores) {
     for (let i = 0; i < cantidadBotones; i++) {
         contenedorIndicadores.innerHTML +=
@@ -60,13 +75,22 @@ function agregaProductoEnCarrito(producto, talle, cantidad) {
 
     if (!producto.hasTalle || validaTalle(talle)) {
         let detalleCompraRepetido = carrito.listDetalleCompra.find(detalleCompra => detalleCompra.producto.id === producto.id && detalleCompra.talle === talle);
-        
+
         //verifico si anteriormente se agregó el producto al carrito. En caso de repetirse, actualizo el detalle existente, 
         detalleCompraRepetido ? detalleCompraRepetido.cantidad += cantidad : carrito.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
 
-        document.querySelector("header #btnCarrito").setCustomValidity("Producto Agregado");
-        document.querySelector("header #btnCarrito").reportValidity();
-
+        Swal.fire({
+            // position: 'top-end',
+            icon: 'success',
+            title: 'Producto agregado al carrito',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(()=>{
+            document.getElementById("selectTalle").selectedIndex = 0
+            
+            document.getElementById("selectCantidad").selectedIndex = 0
+        })
+       
         guardaCarritoEnLS();
 
         return true;
@@ -107,10 +131,12 @@ const productoSeleccionado = JSON.parse(localStorage.getItem("productoSelecciona
 cargaPaginaProducto(productoSeleccionado);
 
 document.getElementById("btnAgregarAlCarrito").onclick = () => {
-    agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad()) && setTimeout(function () { window.open("./tienda.html", "_self"); }, 1500);
+    agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad())// && setTimeout(function () { window.open("./tienda.html", "_self"); }, 1500);
 };
 
 document.getElementById("btnComprar").onclick = () => {
     agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad()) && window.open("./carrito.html", "_self");
 };
+
+cargaSelectCantidad()
 

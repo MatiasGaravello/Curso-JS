@@ -3,23 +3,23 @@ let total = 0;
 const costoEnvio = 1000;
 
 function muestraCarrito() {
-    if (getTotal() == 0) {
+    const mensajeCarritoVacio = document.getElementById("mensajeCarritoVacio")
 
+    if (getTotal() == 0) {
+        document.getElementById("contenedor-desktop").style.display = "none"
+
+        document.getElementById("contenedor-mobile").style.display = "none"
     } else {
         let tbodyDesktop = document.querySelector("tbody");
         let divContenedorMobile = document.getElementById("productosCarritoMobile");
         tbodyDesktop.innerHTML = "";
         divContenedorMobile.innerHTML = "";
 
+        mensajeCarritoVacio.style.display = "none"
 
         for (let detalleCompra of carrito.listDetalleCompra) {
 
-            const leyendaTalle = detalleCompra.talle == "" ? `Talle: Único` : `Talle: ${detalleCompra.talle}`;
-            // let leyendaTalle = `Talle: ${detalleCompra.talle}`;
-
-            // if (detalleCompra.talle == 0) {
-            //     leyendaTalle = `Talle: Único`;
-            // }
+            const leyendaTalle = detalleCompra.talle === "" ? `Talle: Único` : `Talle: ${detalleCompra.talle.toUpperCase()}`;
 
             const subtotalDetalle = getSubtotalDetalle(detalleCompra);
 
@@ -125,10 +125,6 @@ function getTotal() {
     return total;
 }
 
-// function getSubtotalDetalle(detalleCompra){
-//     return detalleCompra.producto.precio * detalleCompra.cantidad;
-// }
-
 function getSubtotalDetalle({ producto: { precio }, cantidad }) {
     return precio * cantidad;
 }
@@ -137,7 +133,7 @@ function muestraConfirmacionEliminarProducto(detalleCompra, leyendaTalle) {
     Swal.fire({
         title: 'Seguro que deseas eliminar este producto?',
         text: `${detalleCompra.producto.nombre} Cantidad:${detalleCompra.cantidad} ${leyendaTalle}`,
-        icon: 'warning',
+        icon: 'question',
         imageUrl: `${detalleCompra.producto.listPathImagen[0]}`,
         imageWidth: 200,
         imageHeight: 220,
@@ -152,13 +148,14 @@ function muestraConfirmacionEliminarProducto(detalleCompra, leyendaTalle) {
 
             guardaCarritoEnLS();
 
-            Swal.fire(
-                'Producto eliminado del carrito!',
-            ).then((result) => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Producto eliminado del carrito!',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
                 document.location.reload();
             })
-
-
         }
     })
 }
