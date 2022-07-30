@@ -123,7 +123,7 @@ function creaSelectCategoria() {
 
 function buscaProducto(cadenaBusqueda) {
     document.getElementById("contenedor-productos").childNodes.forEach(x => {
-        if (x.dataset.productonombre.includes(cadenaBusqueda)) {
+        if (x.dataset.productonombre.toLowerCase().includes(cadenaBusqueda.toLowerCase())) {
             x.style.display = ""
         } else {
             x.style.display = "none"

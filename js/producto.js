@@ -80,7 +80,6 @@ function agregaProductoEnCarrito(producto, talle, cantidad) {
         detalleCompraRepetido ? detalleCompraRepetido.cantidad += cantidad : carrito.listDetalleCompra.push(new DetalleCompra(producto, cantidad, talle));
 
         Swal.fire({
-            // position: 'top-end',
             icon: 'success',
             title: 'Producto agregado al carrito',
             showConfirmButton: false,
@@ -131,7 +130,7 @@ const productoSeleccionado = JSON.parse(localStorage.getItem("productoSelecciona
 cargaPaginaProducto(productoSeleccionado);
 
 document.getElementById("btnAgregarAlCarrito").onclick = () => {
-    agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad())// && setTimeout(function () { window.open("./tienda.html", "_self"); }, 1500);
+    agregaProductoEnCarrito(productoSeleccionado, obtieneTalle(), obtieneCantidad())
 };
 
 document.getElementById("btnComprar").onclick = () => {

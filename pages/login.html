@@ -13,6 +13,10 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://kit.fontawesome.com/4912031e26.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="../js/clases.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script defer src="../js/login.js"></script>
     <link rel="stylesheet" href="../css/estilo-sass.css">
     <title>BAGNA - login</title>
 </head>
@@ -100,18 +104,18 @@
             <form class="p-md-4">
 
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="userMail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="userMail" aria-describedby="emailHelp" required>
                     <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="userPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="userPassword" required>
                 </div>
 
 
                 <div class="d-flex flex-column text-center">
-                    <button class="btn btn-primary p-3 text-uppercase" type="submit">Iniciar sesión</button>
+                    <button id="btnLogin" class="btn btn-primary p-3 text-uppercase" type="submit">Iniciar sesión</button>
                     <a href="" class="mt-4">¿Olvidaste tu contraseña?</a>
                 </div>
             </form>
@@ -140,7 +144,7 @@
                     <p class="text-center mt-3">Sexo</p>
 
                     <div class="d-flex justify-content-around m-auto" id="contenedor-rdb-sexo">
-                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
+                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" required>
                         <label class="btn btn-outline-secondary" for="option1">Femenino</label>
 
                         <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
@@ -157,7 +161,7 @@
                 <div class="text-end mt-3">
                     <button class="btn btn-secondary me-2 p-2 p-3 text-uppercase" type="reset" id="btn__Reset">Limpiar
                         Campos</button>
-                    <button class="btn btn-primary p-3 text-uppercase" type="submit">Enviar</button>
+                    <button id="btnEnviar" class="btn btn-primary p-3 text-uppercase" type="submit">Enviar</button>
                 </div>
             </form>
         </div>
